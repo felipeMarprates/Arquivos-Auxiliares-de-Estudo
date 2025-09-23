@@ -1,0 +1,360 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.5in, landscape}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{lmodern}
+
+\setlength{\columnsep}{8pt}
+\raggedcolumns
+
+
+
+
+
+% ------- Operadores ausentes (evita "Undefined control sequence") -------
+\DeclareMathOperator{\Ker}{Ker}   % agora \Ker(...) funciona
+\DeclareMathOperator{\Spec}{Spec} % agora \Spec(...) funciona
+\DeclareMathOperator{\Specm}{Specm} % agora \Specm(...) funciona
+% (\Im já existe no amsmath; \ker também existe minúsculo)
+
+% --- Destaque de nomes de conceitos definidos ---
+\newcommand{\defname}[1]{\colorbox{yellow!30}{\strut \textbf{#1}}}
+
+% --- Ambientes amsthm ---
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{proposition}{prop}
+\newtheorem*{lemma}{Lema}
+\newtheorem*{corollary}{cor}
+\newtheorem*{definition}{def}
+\theoremstyle{definition}
+
+\setlength{\columnsep}{16pt}
+
+\begin{document}
+
+\title{Documento de Definições e Enunciados}
+\author{}
+\date{}
+
+
+
+\section{Quocientes de Espaços Vetoriais}
+\begin{multicols}{3}
+Sejam $V$ um $K$-espaço vetorial e $U \le V$ um subespaço.
+
+
+
+\begin{definition}[\defname{Relação de Congruência Módulo $U$}]
+A relação $\sim$ em $V$ é definida por
+\[
+\mathbf{v \sim v' \stackrel{\text{DEF}}{\iff} v - v' \in U}.
+\]
+É chamada de congruência módulo $U$. Também denotamos $v \sim v'$ por \(\mathbf{v \equiv v' \pmod{U}}\).
+\end{definition}
+
+\begin{definition}[\defname{Classe Residual(ou de Equivalência)}]
+Denotamos por \(\mathbf{V/U}\) o conjunto das classes módulo $U$. A classe de \(v \in V\) em \(V/U\) é denotada por \(\mathbf{\overline{v}}\), \(\mathbf{v \pmod{U}}\) ou \(\mathbf{v + U}\). Além disso,
+\[
+\overline{v} = \{v' \in V : v' \equiv v \pmod{U}\} 
+\]
+\[
+= v + U \stackrel{\text{DEF}}{=} \{v + u : u \in U\}.
+\]
+\end{definition}
+
+\begin{definition}[\defname{Operações no Espaço Quociente}]
+Em \(V/U\) definimos
+\[
+\mathbf{\overline{v} \oplus \overline{w} \stackrel{\text{DEF}}{=} \overline{v + w}}, \qquad
+\mathbf{\alpha \odot \overline{v} \stackrel{\text{DEF}}{=} \overline{\alpha \cdot v}}.
+\]
+\end{definition}
+
+\begin{definition}[\defname{Espaço Quociente}]
+O $K$-espaço vetorial \(\mathbf{(V/U,\oplus,\odot)}\) é chamado de \textbf{Espaço Quociente de $V$ por $U$}.
+\end{definition}
+
+\begin{definition}[\defname{Mapa Quociente (Projeção Canônica)}]
+O mapa \(\mathbf{\pi: V \to V/U}\) dado por \(\pi(v)=\overline{v}\) é o \textbf{mapa quociente} (projeção canônica).
+\end{definition}
+
+
+
+\begin{theorem}[\defname{Propri. Universal do Quociente}]
+Se $T:V\to W$ é $K$-linear e \(U \le \Ker(T)\), então \textbf{existe um único} $K$-linear \(\overline{T}:V/U\to W\) tal que \(T=\overline{T}\circ \pi\), onde \(\pi:V\to V/U\) é a projeção canônica.
+\end{theorem}
+
+\begin{theorem}[\defname{Isomorfismo}]
+Se $T:V\to W$ é $K$-linear e sobrejetor, então \(\mathbf{V/\Ker(T)\simeq W}\). Em geral,
+\(\mathbf{V/\Ker(T)\simeq \Im(T)}\).
+\end{theorem}
+
+\begin{theorem}[\defname{Dimensão para Quocientes}]
+Se $V$ tem dimensão finita e $U\le V$, então
+\[
+\mathbf{\dim_K(V/U)=\dim_K(V)-\dim_K(U)}.
+\]
+\end{theorem}
+
+\begin{corollary}[\defname{Teorema do Núcleo e da Imagem}]
+Se $T:V\to W$ é $K$-linear e \(\dim_K(V)<\infty\), então
+\[
+\mathbf{\dim_K(V)-\dim_K(\Ker(T))=\dim_K(\Im(T))}.
+\]
+\end{corollary}
+\end{multicols}
+
+\section{Teoria de Anéis}
+\begin{multicols}{3}
+
+
+\begin{definition}[\defname{Anel}]
+Um conjunto não vazio $R$ com $+$ e $\cdot$ é um \textbf{anel} \((R,+,\cdot)\) se:
+\begin{enumerate}[label=(\roman*)]
+\item $(R,+)$ é grupo abeliano (neutro $0$);
+\item a multiplicação é associativa;
+\item a multiplicação é distributiva em relação à adição (e vice-versa).
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[\defname{Anel Comutativo}]
+Se o produto é comutativo, $(R,+,\cdot)$ é \textbf{anel comutativo}.
+\end{definition}
+
+\begin{definition}[\defname{Anel com 1}]
+Se existe \(1\in R\) com \(1\neq 0\) tal que \(a\cdot 1=1\cdot a=a\) para todo \(a\in R\), então $R$ é \textbf{anel com 1}.
+\end{definition}
+
+\begin{definition}[\defname{Divisor de Zero}]
+Um \(a\in R\) é \textbf{divisor de zero à esquerda} se \(\mathbf{a\cdot b=0}\) para algum \(b\neq 0\) (analogamente, à direita se \(b\cdot a=0\)).
+\end{definition}
+
+\begin{definition}[\defname{Domínio}]
+Um anel comutativo com 1 é \textbf{domínio} se não possui divisores de zero.
+\end{definition}
+
+\begin{definition}[\defname{Unidade}]
+Em anel com 1, \(a\in R\setminus\{0\}\) é \textbf{unidade} se existe (único) \(a^{-1}\in R\setminus\{0\}\) com \(a a^{-1}=1=a^{-1}a\). O conjunto das unidades é \(\mathbf{R^\times}\).
+\end{definition}
+
+\begin{definition}[\defname{Corpo}]
+Um domínio \((R,+,\cdot)\) é \textbf{corpo} se todo \(a\in R^\times=R\setminus\{0\}\) é unidade.
+\end{definition}
+
+\begin{definition}[\defname{Anel de Divisão}]
+Um anel com 1 é \textbf{anel de divisão} se todo \(a\in R\setminus\{0\}\) é unidade.
+\end{definition}
+
+\begin{definition}[\defname{Centro do Anel}]
+\[
+\mathbf{Z(R)\stackrel{\text{DEF}}{=}\{y\in R:\ yx=xy,\ \forall x\in R\}}
+\]
+é um anel comutativo chamado \textbf{centro de $R$}.
+\end{definition}
+
+\begin{definition}[\defname{Polinômio Ciclotômico}]
+Se \(U_\infty=\{z\in\mathbb{C}: z^n=1\ \text{para algum }n\ge 1\}\), o \textbf{$d$-ésimo polinômio ciclotômico} é
+\[
+\mathbf{\phi_d(T)\stackrel{\text{DEF}}{=}\prod_{\lambda\in U_\infty,\ \mathrm{o}(\lambda)=d}(T-\lambda)}.
+\]
+\end{definition}
+
+
+
+\begin{proposition}[\defname{Domínio Finito é Corpo}]
+Se \((R,+,\cdot)\) é \textbf{domínio finito}, então \(R\) é \textbf{corpo}.
+\end{proposition}
+
+\begin{theorem}[\defname{Wedderburn}]
+Se \((R,+,\cdot)\) é \textbf{anel de divisão finito}, então \(R\) é \textbf{corpo}.
+\end{theorem}
+
+\begin{proposition}[\defname{Critério da Deri. para Separabilidade}]
+Se um polinômio não possui raízes em comum com sua derivada, então ele não possui raízes repetidas.
+\end{proposition}
+
+\begin{proposition}[\defname{Fatoração de \(T^n-1\)}]
+Para qualquer \(n\ge 1\),
+$
+\mathbf{T^n-1=\prod_{d\mid n}\phi_d(T)}.
+$
+\end{proposition}
+\end{multicols}
+
+\section{Subanéis e Morfismos}
+\begin{multicols}{3}
+
+
+\begin{definition}[\defname{Subanel}]
+Um subconjunto \(\emptyset\neq S\subseteq R\) é \textbf{subanel} de \(R\) se (i) $S$ é anel com as operações induzidas; (ii) se $R$ possui $1_R$, então \(1_R\in S\).
+\end{definition}
+
+\begin{definition}[\defname{Morfismo (Homomorfismo) de Anéis}]
+Um mapa \(f:R\to S\) é \textbf{morfismo} de anéis se
+\(f(a+b)=f(a)+f(b)\),
+\(f(a\cdot b)=f(a)\cdot f(b)\) e, se há unidades, \(f(1_R)=1_S\).
+\end{definition}
+
+\begin{definition}[\defname{Endomorfismo}]
+Se $f$ for morfismo e \(f:R \to R\) então $f$ é \textbf{endomorfismo}. 
+\end{definition}
+\begin{definition}[\defname{Isomorfismo}]
+Se $f$ for \textbf{morfismo} e a inversa é morfismo então $f$ é isomorfismo. 
+\end{definition}
+\begin{definition}[\defname{Automorfismo}]
+Se $f$ for \textbf{isomorfismo} e \textbf{endomorfismo}então $f$ é Automorfismo. 
+\end{definition}
+\begin{definition}[\defname{Núcleo de um Morfismo}]
+\[
+\mathbf{\Ker(f)\stackrel{\text{DEF}}{=}\{r\in R:\ f(r)=0_S\}=f^{-1}(0_S)}.
+\]
+\end{definition}
+
+
+
+\begin{proposition}[\defname{Caracterização de Subanel}]
+Um \(\emptyset\neq S\subseteq R\) é subanel de \(R\) \(\iff\) para quaisquer \(a,b\in S\), \(\mathbf{a-b\in S}\) e \(\mathbf{a\cdot b\in S}\); e, se $R$ tem $1$, então \(\mathbf{1\in S}\).
+\end{proposition}
+
+\begin{proposition}[\defname{Morfismo Bijetor é Isomorfismo}]
+Se \(f:R\to S\) é morfismo, então \(f\) é bijetor \(\iff\) \(f\) é isomorfismo.
+\end{proposition}
+\end{multicols}
+
+\section{Ideais}
+\begin{multicols}{3}
+
+
+\begin{definition}[\defname{Ideal à Esquerda / à Direita}]
+Um \(\emptyset\neq I\subseteq R\) é \textbf{ideal à esquerda} (resp. à direita) se
+\[
+\mathbf{\alpha x+\beta y\in I}\quad (\text{resp. } \mathbf{x\alpha+y\beta\in I})
+\]
+para quaisquer \(x,y\in I\) e \(\alpha,\beta\in R\).
+\end{definition}
+
+\begin{definition}[\defname{Ideal}]
+Se \(I\) é ideal à esquerda e à direita, dizemos \textbf{ideal de \(R\)}. Em anel comutativo com 1, escrevemos \(\mathbf{I\triangleleft R}\); se \(I\subsetneq R\), é \textbf{ideal próprio}.
+\end{definition}
+
+\begin{definition}[\defname{Ideal Principal}]
+Em anel comutativo com 1, \(I\triangleleft R\) é \textbf{principal} se \(\exists\,x\in R\) tal que \(I=(x)\).
+\end{definition}
+
+\begin{definition}[\defname{Ideal Gerado por \(S\)}]
+Para \(S\subseteq R\),
+\[
+\mathbf{\langle S\rangle\stackrel{\text{DEF}}{=}\bigcap_{S\subseteq I\triangleleft R} I}.
+\]
+Se \(S=\{s_1,\dots,s_N\}\), escrevemos \((s_1,\dots,s_N)\).
+\end{definition}
+
+\begin{definition}[\defname{Soma e Produto de Ideais}]
+Se \(I,J\triangleleft R\), definimos \(\mathbf{I+J=\langle I\cup J\rangle}\) e
+\[
+\mathbf{I\cdot J\stackrel{\text{DEF}}{=}\langle\{a\cdot b:\ a\in I,\ b\in J\}\rangle}.
+\]
+\end{definition}
+
+\begin{definition}[\defname{Ideais Coprimos}]
+Se \(I,J\triangleleft R\) e \(\mathbf{I+J=R=(1)}\), dizemos que \(I\) e \(J\) são \textbf{coprimos}.
+\end{definition}
+
+\begin{definition}[\defname{Ideal Primo e Maximal}]
+Em anel comutativo com 1, ideal próprio \(I\) é \textbf{primo} se
+\(\mathbf{ab\in I\Rightarrow a\in I\ \text{ou}\ b\in I}\) (notações: \(I\triangleleft_p R\), \(I\in\Spec(R)\));
+é \textbf{maximal} se é maximal por inclusão entre ideais próprios (notações: \(I\triangleleft_m R\), \(I\in\Specm(R)\)).
+\end{definition}
+
+
+
+\begin{proposition}[\defname{Ideais de \(\mathbb{Z}\)}]
+Se \(I\triangleleft \mathbb{Z}\), então \(\mathbf{I=(n)}\) para algum \(n\ge 0\).
+\end{proposition}
+
+\begin{lemma}[\defname{Lema de Zorn}]
+Se \((X,\le)\) é um POSET não vazio e toda cadeia tem cota superior, então \(X\) possui elemento maximal.
+\end{lemma}
+
+\begin{theorem}[\defname{Existência de Ideal Maximal}]
+Se \(R\) é comutativo com 1 (\(\neq 0\)), então \(R\) possui um ideal maximal.
+\end{theorem}
+
+\begin{theorem}[Ideal Próprio $\subseteq$ Ideal Maximo]
+Se \(I\triangleleft R\) é próprio (com $R$ comutativo com 1, \(\neq 0\)), então existe ideal maximal \(m\) com \(I\subseteq m\).
+\end{theorem}
+
+\begin{proposition}[\defname{Forma Explícita do Ideal Gerado}]
+Para \(S\subseteq R\) (anel comutativo com 1),
+\[
+\mathbf{\langle S\rangle=\bigl\{\sum_{i=1}^k r_i s_i:\ r_i\in R,\ s_i\in S,\ k\in\mathbb{Z}_{\ge 1}\bigr\}}.
+\]
+\end{proposition}
+\end{multicols}
+\newpage
+\section{Quocientes de Anéis por Ideais}
+\begin{multicols}{3}
+Seja $R$ um anel comutativo com $1$ (\(\neq 0\)) e \(I\triangleleft R\).
+
+
+
+\begin{definition}[\defname{Anel Quociente}]
+O anel \(\mathbf{R/I}\) é o \textbf{quociente de \(R\) por \(I\)} (anel das classes residuais de \(R\) módulo \(I\)).
+\end{definition}
+
+\begin{definition}[\defname{Mapa Quociente (Anéis)}]
+O morfismo \(\mathbf{\pi:R\to R/I}\) dado por \(\pi(x)=\overline{x}\) é o \textbf{mapa quociente}.
+\end{definition}
+
+
+
+\begin{theorem}[\defname{Propri. Universal do Quociente}]
+Se \(f:R\to S\) é morfismo de anéis e \(I\subseteq\Ker(f)\), então \textbf{existe único} \(\overline{f}:R/I\to S\) tal que \(\overline{f}\circ \pi=f\).
+\end{theorem}
+
+\begin{corollary}[\defname{Teorema do Isomorfismo}]
+Para \(f:R\to S\), vale \(\mathbf{R/\Ker(f)\simeq \Im(f)}\).
+\end{corollary}
+
+\begin{proposition}[\defname{Caracterização de Id Primos e Max}]
+Se \(I\triangleleft R\) é próprio, então
+\begin{enumerate}[label=(\alph*)]
+\item \(I\) é primo \(\iff\ R/I\) é domínio;
+\item \(I\) é maximal \(\iff\ R/I\) é corpo.
+\end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+Todo ideal maximal é primo.
+\end{corollary}
+
+\begin{theorem}[\defname{Correspondência}]
+Existe bijeção entre ideais de \(R/I\) e ideais de \(R\) que contêm \(I\), preservando inclusões, dada por \(J\mapsto \pi(J)\).
+\end{theorem}
+
+\begin{theorem}[\defname{Relação de Quocientes}]
+Se \(J\triangleleft R\) com \(J\supset I\), então
+\[
+\mathbf{R/J \ \simeq\ (R/I)/(J/I)},
+\]
+onde \(J/I=\pi(J)\) é ideal de \(R/I\).
+\end{theorem}
+
+\begin{theorem}[\defname{Chinês dos Restos}]
+Se \(I_1,\dots,I_n\) são ideais próprios de \(R\) dois a dois coprimos (\(I_i+I_j=R\), \(i\neq j\)), então
+\[
+\mathbf{I_1\cdot\ldots\cdot I_n=\bigcap_{k=1}^n I_k},\qquad 
+\]
+\[
+\mathbf{R/\bigl(\bigcap_{k=1}^n I_k\bigr)\ \simeq\ R/I_1\times\cdots\times R/I_n}.
+\]
+\end{theorem}
+\end{multicols}
+
+\end{document}
