@@ -1,5 +1,5 @@
 
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[portuguese]{babel}
@@ -7,19 +7,38 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{geometry}
-\geometry{a4paper, margin=1in, landscape}
+\geometry{a4paper, margin=0.5in, landscape}
 \usepackage{multicol}
 \usepackage{enumitem}
-\setlength{\columnsep}{18pt}
+\usepackage{xcolor} % <— essencial para \colorbox
+
+\setlength{\columnsep}{12pt}
 \raggedcolumns
 \pagenumbering{gobble} % Remove os números de página
+\newtheoremstyle{yellowhead}% name
+{6pt}{3pt}% Space above/below
+{}% body font
+{}% indent
+{\bfseries}% head font
+{}% punctuation after head
+{0.2em}% space after head
+{\colorbox{yellow!30}{\strut #1\ifx#2\empty\else~#2\fi\ifx#3\empty\else~\ (#3)\fi}}% head spec
 
+% Ativa o estilo e (re)declara seus ambientes
+\theoremstyle{yellowhead}
+\newtheorem*{theorem}{Teorema}
+\newtheorem*{lemma}{Lema}
+\newtheorem*{proposition}{Prop.}
+\newtheorem*{corollary}{Cor.}
 
-% --- Definições de ambiente para Teoremas, etc. ---
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{proposition}[theorem]{Proposição}
-\newtheorem{lemma}[theorem]{Lema}
-\newtheorem{corollary}[theorem]{Corolário}
+% Definições/observações normalmente usam corpo em romano:
+\newtheoremstyle{yellowdef}
+{6pt}{6pt}{\normalfont}{}{\bfseries}{.}{0.6em}
+{\colorbox{yellow!30}{\strut #1\ifx#2\empty\else~#2\fi\ifx#3\empty\else~\ (#3)\fi}}
+\theoremstyle{yellowdef}
+\newtheorem*{definition}{Def.}
+\newtheorem{exemplo}{Exemplo}
+\newtheorem{observacao}{Observação}
 
 \begin{document}
 
@@ -28,7 +47,25 @@
 \date{}
 
 \section{Desigualdades Fundamentais para Espaços Normados}
+
 \begin{multicols}{3}
+
+\begin{definition}[Espaço Vetorial]
+Um **espaço vetorial** é um conjunto não vazio $V$ sobre um corpo $K$ ($K = \mathbb{R}$ ou $\mathbb{C}$) munido de duas operações, adição ($+: V \times V \rightarrow V$) e multiplicação por escalar ($\cdot: \mathbb{R} \times V \rightarrow V$), que satisfaz as seguintes propriedades: (a) $u + (v + w) = (u + v) + w$ (associativa), (b) $u + v = v + u$ (comutativa), (c) Existe $0 \in V$ tal que $0 + u = u$ para todo $u \in V$, (d) Para cada $v \in V$ existe $-v \in V$ tal que $v + (-v) = 0$, (e) $\alpha \cdot (\beta \cdot u) = (\alpha\beta) \cdot v$, para todo $\alpha, \beta \in K$ e $u \in V$, (f) $1 \cdot u = u$, para todo $y \in V$, (g) $\alpha \cdot (u + v) = \alpha \cdot u + \alpha \cdot v$, para todo $\alpha, \beta \in K$ e $v \in V$, (h) $(\alpha + \beta)u = \alpha \cdot u + \beta \cdot v$, para todo $\alpha, \beta \in K$ e $v \in V$.
+\end{definition}
+
+\begin{definition}[Norma]
+Seja $V$ um espaço vetorial sobre o corpo $K$ ($K = \mathbb{R}$ ou $\mathbb{C}$). Uma **norma** em $V$ é uma função $\Vert \cdot \Vert_V : V \rightarrow \mathbb{R}^+$ que satisfaz as seguintes propriedades: $\Vert v \Vert_V = 0 \Leftrightarrow v = 0$, $\Vert \lambda v \Vert_V = |\lambda|\Vert v \Vert_V$ e $\Vert v + w \Vert_V \le \Vert v \Vert_V + \Vert w \Vert_V$, para todo $v, w \in V$.
+\end{definition}
+
+\begin{definition}[Espaço Vetorial Normado]
+Um espaço vetorial $V$ munido de uma norma é chamado **espaço vetorial normado**, isto é, um espaço vetorial normado é um par $(V, \Vert \cdot \Vert_V)$ onde $\Vert \cdot \Vert_V : V \rightarrow \mathbb{R}^+$ é uma norma.
+\end{definition}
+
+\begin{definition}[Métrica de Espaço Métrico]
+Seja $X$ um conjunto não vazio. Uma **métrica** ou **distância** em $X$ é uma função $\rho : X \times X \rightarrow [0, \infty)$ satisfazendo: $\rho(x, y) = 0 \Leftrightarrow x = y$, $\rho(x, y) = \rho(y, x)$, para todo $x, y \in X$, $\rho(x, z) \le \rho(x, y) + \rho(y, z)$, para todo $x, y, z \in X$. O conjunto $X$ munido da métrica $\rho$ é chamado **espaço métrico** e é denotado por $(X, \rho)$.
+\end{definition}
+
 Essas desigualdades são ferramentas essenciais para provar a desigualdade triangular para as p-normas, garantindo a validade dessas normas.
 
 \begin{lemma}[Desigualdade de Young]
@@ -56,11 +93,35 @@ Essas desigualdades ajudam a estabelecer as propriedades fundamentais dos espaç
 
 \section{Completude e Transformações Lineares}
 \begin{multicols}{3}
-\begin{theorem}[Uma Condição para a Completude]
+\begin{definition}[Espaço de Banach]
+Um espaço vetorial normado que é **completo** com a métrica induzida pela norma é dito um **espaço de Banach**.
+\end{definition}
+
+\begin{definition}[Normas Equivalentes]
+Duas normas em $X$, $\Vert \cdot \Vert_1$ e $\Vert \cdot \Vert_2$, são **equivalentes** se existem constantes positivas $c_1$ e $c_2$ tal que $c_1\Vert x \Vert_1 \le \Vert x \Vert_2 \le c_2\Vert x \Vert_1 \forall x \in X$.
+\end{definition}
+
+\begin{definition}[Série Convergente e Abs. Convergente]
+Uma série $\sum_{j=1}^{\infty} x_j$ é dita **convergente** em $X$ se a sequência de somas parciais $\sum_{j=1}^{n} x_j$ converge para $x$ quando $n \rightarrow \infty$. Uma série é dita **absolutamente convergente** se a série das normas $\sum_{j=1}^{\infty} \Vert x_j \Vert$ é convergente.
+\end{definition}
+
+\begin{definition}[Transformação Linear Limitada]
+Uma transformação linear $T : X \rightarrow Y$ entre dois espaços vetoriais normados é **limitada** se existe uma constante $c \ge 0$ tal que $\Vert Tx \Vert_Y \le c\Vert x \Vert_X$, para todo $x \in X$.
+\end{definition}
+
+\begin{definition}[Transformação Linear Inversível]
+$T \in L(X ,Y )$ é **inversível** ou um **isomorfismo** se $T$ é bijetora e $T^{-1} \in L(Y ,X )$, o que é equivalente a existir $c > 0$ tal que $\Vert Tx \Vert_Y \ge c\Vert x \Vert_X$.
+\end{definition}
+
+\begin{definition}[Isometria (Transformação Linear)]
+$T$ é uma **isometria** se $\Vert Tx \Vert_Y = \Vert x \Vert_X$, para todo $x \in X$.
+\end{definition}
+
+\begin{theorem}[1 Condição para a Completude]
 Um espaço vetorial normado é completo se, e somente se, toda série absolutamente convergente é convergente.
 \end{theorem}
 
-\begin{proposition}[Equivalências para Transformações Lineares Contínuas]
+\begin{proposition}[Equiv. p. Transf. Lineares Contínuas]
 Se $X, Y$ são espaços vetoriais normados e $T: X \to Y$ é linear, as seguintes afirmações são equivalentes:
 \begin{enumerate}[label=(\alph*)]
     \item $T$ é contínua;
@@ -74,24 +135,63 @@ Se $Y$ é completo, então $L(X, Y)$ é completo.
 \end{proposition}
 O conceito de transformações lineares limitadas entre espaços completos (espaços de Banach) leva diretamente ao estudo mais detalhado de funcionais lineares, que são centrais para os teoremas de Hahn-Banach.
 \end{multicols}
-\newpage
+
 \section{Os Teoremas de Hahn-Banach e Suas Consequências}
 \begin{multicols}{3}
-\begin{proposition}[Relação entre Funcionais Lineares Reais e Complexos]
+\begin{definition}[Funcional Linear]
+Seja $X$ um espaço vetorial sobre $K$. Uma função linear $f : X \rightarrow K$ é chamada um **funcional linear**.
+\end{definition}
+
+\begin{definition}[Espaço Dual ($X^*$)]
+Se $X$ é um espaço vetorial normado, $L(X ,K)$ é um espaço de Banach que é chamado **espaço dual de $X$** e denotado por $X^*$.
+\end{definition}
+
+\begin{definition}[Funcional Sublinear]
+Se $X$ é normado, um **funcional sublinear** é uma função $p : X \rightarrow \mathbb{R}$ tal que $p(x+y) \le p(x) + p(y)$ e $p(\lambda x) = \lambda p(x)$, para todo $x, y \in X$ e $\lambda > 0$.
+\end{definition}
+
+\begin{definition}[Espaço Reflexivo]
+Para espaços de dimensão infinita, quando a imagem isométrica $\hat{X}$ é igual ao bidual $X^{**}$, $X$ é dito **reflexivo**. A reflexividade passa a ser entendida como $X = X^{**}$ quando $X$ é identificado com seu subespaço $\hat{X}$ no bidual $X^{**}$.
+\end{definition}
+
+\begin{definition}[Hiperplano Afim]
+Um **hiperplano (afim)** é um conjunto da forma $H = \{x \in X : f(x) = \alpha\}$ onde $f : X \rightarrow \mathbb{R}$ é um funcional linear não identicamente nulo e $\alpha \in \mathbb{R}$. Diremos que $H$ é o hiperplano de equação $[f = \alpha]$.
+\end{definition}
+
+\begin{definition}[Conjunto Convexo]
+Seja $X$ um espaço vetorial sobre $K$. Diremos que $C \subset X$ é **convexo** se $tx + (1-t)y \in C$ sempre que $t \in$ e $x, y \in C$.
+\end{definition}
+
+\begin{definition}[Separação Fraca]
+Se $A, B \subset X$ dizemos que o hiperplano de equação $[f = \alpha]$ separa $A$ e $B$ no **sentido fraco** se $f(x) \le \alpha$ para todo $x \in A$ e $f(x) \ge \alpha$ para todo $x \in B$.
+\end{definition}
+
+\begin{definition}[Separação Forte]
+Diremos que o hiperplano de equação $[f = \alpha]$ separa $A$ e $B$ no **sentido forte** se existe $\varepsilon > 0$ tal que $f(x) \le \alpha - \varepsilon$ para todo $x \in A$ e $f(x) \ge \alpha + \varepsilon$ para todo $x \in B$.
+\end{definition}
+
+\begin{definition}[Func. de Minkowski de um Convexo]
+Seja $X$ um espaço vetorial normado sobre $\mathbb{R}$ e $C \subset X$ um aberto convexo com $0 \in C$. Para todo $x \in X$, o **funcional de Minkowski de $C$**, $p(x)$, é definido como $p(x) = \inf\{\alpha > 0 ; \alpha^{-1}x \in C\}$.
+\end{definition}
+
+\begin{definition}[Complexificação de X ($X^{\#}$)]
+Seja $X$ um espaço vetorial sobre $\mathbb{R}$. A **complexificação de $X$** estende $X$ a um espaço vetorial $X^{\#}$ sobre $\mathbb{C}$ e é feita da seguinte forma: $X^{\#} = \{(x, y) : x, y \in X\}$ com a operação de adição coordenada a coordenada e com a operação de multiplicação por escalar dada por $(\alpha + i\beta)(x, y) = (\alpha x - \beta y, \beta x + \alpha y)$.
+\end{definition}
+\begin{proposition}[Relação entre Func. Lineares $\mathbb{R}$ e $\mathbb{C}$]
 Seja $X$ um espaço vetorial sobre $\mathbb{C}$. Se $f: X \to \mathbb{C}$ é um funcional linear e $u = \text{Re}(f)$, então $u$ é um funcional linear real e $f(x) = u(x) - iu(ix)$ para todo $x \in X$.
 Reciprocamente, se $u: X \to \mathbb{R}$ é um funcional linear real e $f: X \to \mathbb{C}$ é definido por $f(x) = u(x) - iu(ix)$, então $f$ é um funcional linear complexo. Se $X$ é normado, $f$ é limitado se e somente se $u$ é limitado, e neste caso $\Vert f \Vert = \Vert u \Vert$.
 \end{proposition}
 
-\begin{theorem}[O Teorema de Hahn-Banach (Espaços Vetoriais Reais)]
+\begin{theorem}[Hahn-Banach (E.V.$\mathbb{R}$)]
 Sejam $X$ um espaço vetorial real, $p$ um funcional sublinear em $X$, $M$ um subespaço vetorial de $X$ e $f$ um funcional linear em $M$ tal que $f(x) \le p(x)$ para todo $x \in M$. Então existe um funcional linear $F$ em $X$ tal que $F(x) \le p(x)$ para todo $x \in X$ e $F|_M = f$.
 \end{theorem}
 
-\begin{theorem}[O Teorema de Hahn-Banach (Espaços Vetoriais Complexos)]
+\begin{theorem}[Hahn-Banach (E.V.$\mathbb{C}$)]
 Sejam $X$ um espaço vetorial complexo, $p$ uma seminorma em $X$, $M$ um subespaço vetorial de $X$ e $f: M \to \mathbb{C}$ um funcional linear com $|f(x)| \le p(x)$ para $x \in M$.
 Então existe $F: X \to \mathbb{C}$, um funcional linear, tal que $|F(x)| \le p(x)$ para todo $x \in X$ e $F|_M = f$.
 \end{theorem}
 
-\begin{theorem}[Corolários de Hahn-Banach]
+\begin{corollary}[de Hahn-Banach]
 Seja $X$ um espaço vetorial normado.
 \begin{enumerate}
     \item Se $M$ é um subespaço vetorial fechado de $X$ e $x \in X \setminus M$, existe $f \in X^*$ tal que $f(x) \neq 0$ e $f|_M = 0$. Na verdade, se $\delta = \inf_{y \in M} \Vert x - y \Vert$, $f$ pode ser escolhido tal que $\Vert f \Vert = 1$ e $f(x) = \delta$.
@@ -99,7 +199,7 @@ Seja $X$ um espaço vetorial normado.
     \item Os funcionais lineares limitados em $X$ separam pontos.
     \item Se $x \in X$, defina $\hat{x}: X^* \to \mathbb{C}$ por \mbox{$\hat{x}(f) = f(x)$}, $\forall f \in X^*$. Então a transformação $x \to \hat{x}$ é uma isometria linear de $X$ em $X^{**}$.
 \end{enumerate}
-\end{theorem}
+\end{corollary}
 
 \begin{proposition}[Hiperplanos Fechados]
 O hiperplano com equação $[f = \alpha]$ é fechado se e somente se $f$ é contínuo.
@@ -109,15 +209,15 @@ O hiperplano com equação $[f = \alpha]$ é fechado se e somente se $f$ é cont
 Seja $X$ um espaço vetorial normado sobre $\mathbb{R}$ e $C \subset X$ um conjunto convexo aberto com $0 \in C$. Para cada $x \in X$ defina $p(x) = \inf\{\alpha > 0 : \alpha^{-1}x \in C\}$ ($p$ é o funcional de Minkowski de $C$). Então, $p$ é um funcional sublinear e existe $M$ tal que $0 \le p(x) \le M\Vert x \Vert$, $\forall x \in X$, e $C = \{x \in X: p(x) < 1\}$.
 \end{lemma}
 
-\begin{lemma}[Separação de um Ponto de um Conjunto Convexo]
+\begin{lemma}[Separação Ponto de um Convexo]
 Sejam $C \subset X$ um conjunto convexo aberto e não vazio e $x_0 \in X \setminus C$. Então existe $f \in X^*$ tal que $f(x) < f(x_0)$ para todo $x \in C$. Em particular, o hiperplano fechado com equação $[f = f(x_0)]$ separa fracamente $C$ de $x_0$.
 \end{lemma}
 
-\begin{theorem}[Primeira Forma Geométrica do Teorema de Hahn-Banach]
+\begin{theorem}[1 Forma Geométrica Hahn-Banach]
 Sejam $X$ um espaço vetorial normado real e $A, B \subset X$ dois conjuntos convexos, não vazios e disjuntos. Se $A$ é aberto, existe um hiperplano fechado que separa fracamente $A$ e $B$.
 \end{theorem}
 
-\begin{theorem}[Segunda Forma Geométrica do Teorema de Hahn-Banach]
+\begin{theorem}[2 Forma Geométrica Hahn-Banach]
 Sejam $X$ um espaço vetorial normado real, e $A$ e $B$ conjuntos convexos, não vazios e disjuntos em $X$. Suponha que $A$ é fechado e $B$ é compacto. Então existe um hiperplano fechado que separa fortemente $A$ e $B$.
 \end{theorem}
 
@@ -128,19 +228,86 @@ Sejam $X$ um espaço vetorial normado sobre $\mathbb{K}$ e $F \subset X$ um sube
 
 \section{Consequências do Teorema da Categoria de Baire}
 \begin{multicols}{3}
-\begin{proposition}[Propriedade de Espaços de Segunda Categoria]
+    \begin{definition}[Auto-valor e Auto-vetor]
+Considere um espaço vetorial $X$ sobre o corpo $K$ e uma transformação linear $A : X \rightarrow X$. Se a transformação linear $\lambda I - A$ (para cada escalar $\lambda \in K$) não é injetiva, existe $0 \ne x \in X$ tal que $(\lambda I - A)x = 0$. Neste caso, diremos que $\lambda$ é um **auto-valor de $A$** e que $x$ é um **auto-vetor de $A$ associado ao auto-valor $\lambda$**.
+\end{definition}
+
+\begin{definition}[Produto Escalar (Produto Interno)]
+Seja $H$ um espaço vetorial sobre $K$. Um **produto escalar** em $H$ é uma função $\langle \cdot, \cdot \rangle : H \times H \rightarrow K$ tal que: (a) $\langle u, v \rangle = \overline{\langle v, u \rangle}$ para todo $u, v \in H$, (b) $\langle \alpha u + \beta v, w \rangle = \alpha \langle u, w \rangle + \beta \langle v, w \rangle$, para todo $u, v, w \in H, \alpha, \beta \in K$, (c) $\langle u, u \rangle \ge 0$ e $\langle u, u \rangle = 0$ se, e somente se, $u = 0$.
+\end{definition}
+
+\begin{definition}[Vetores Ortogonais]
+Dois vetores $u, v$ em um espaço com produto interno $H$ são ditos **ortogonais** (escrevemos $u \perp v$) se $\langle u, v \rangle = 0$.
+\end{definition}
+
+\begin{definition}[Projeção sobre o Convexo ($P_K$)]
+Se $K$ é um subconjunto fechado e convexo de um espaço de Hilbert $H$ e $u_0 \in H$, existe um único $v_0 \in K$ tal que $\Vert u_0 - v_0 \Vert = \inf_{v \in K} \Vert u_0 - v \Vert$. Escrevemos $v_0 = P_K u_0$ e dizemos que $P_K$ é a **projeção sobre o convexo $K$**.
+\end{definition}
+
+\begin{definition}[Projeção (Transformação Linear)]
+Uma transformação linear $P : H \rightarrow M$ é dita uma **projeção** se $P^2 = P$.
+\end{definition}
+
+\begin{definition}[Projeção Ortogonal]
+Se $P \in L(H)$ é uma projeção, $M = Im(P)$ e $M^{\perp} = N(P)$ dizemos que $P$ é uma **projeção ortogonal sobre $M$**.
+\end{definition}
+
+\begin{definition}[Conjunto Ortonormal]
+Um subconjunto $\{u_{\alpha}\}_{\alpha \in A}$ de $H$ é chamado um **conjunto ortonormal** se $\Vert u_{\alpha} \Vert = 1$ para todo $\alpha \in A$ e $u_{\alpha} \perp u_{\beta}$ para $\alpha \ne \beta$.
+\end{definition}
+
+\begin{definition}[Base Ortonormal]
+Um conjunto ortonormal tendo as propriedades (a-c) do Teorema 6 (ou Teorema 2), que são Completamento, Identidade de Parseval e Convergência de Série, é chamado uma **base ortonormal de $H$**.
+\end{definition}
+
+\begin{definition}[Transformação Unitária]
+Se $H_1$ e $H_2$ são espaços de Hilbert com produtos escalares $\langle \cdot, \cdot \rangle_1, \langle \cdot, \cdot \rangle_2$, uma **transformação unitária** de $H_1$ sobre $H_2$ é uma transformação linear sobrejetora $U : H_1 \rightarrow H_2$ que preserva produto escalar; isto é, $\langle Ux, Uy \rangle_2 = \langle x, y \rangle_1$.
+\end{definition}
+
+\begin{definition}[T.L. Densamente Definida]
+Se $D(A)$ (o domínio de $A$) é denso em $X$, dizemos que $A$ é **densamente definida**.
+\end{definition}
+
+\begin{definition}[(Domínio, Gráfico, Imagem, Núcleo)]
+Seja $A : D(A) \subset X \rightarrow Y$ uma transformação linear. Então, $D(A)$ é o **domínio de $A$**; $G(A) = \{(x ,Ax) \in X \times Y : u \in D(A)\} \subset X \times Y$ é o **Gráfico de $A$**; $Im(A) = \{Ax \in Y : x \in D(A)\} \subset Y$ é a **Imagem de $A$**; e $N(A) = \{x \in D(A) : Ax = 0\}$ é o **Núcleo de $A$**.
+\end{definition}
+
+\begin{definition}[Transformação Linear Fechada]
+Diremos que uma transformação linear $T$ é **fechada** se o seu gráfico $G(T) = \{(x, Tx) : x \in X\}$ for fechado em $X \times Y$. É equivalente a dizer que, para toda seqüência $\{(u_n, Au_n)\}$ em $D(A) \times Y$ que é convergente em $X \times Y$ para $(u, v) \in X \times Y$, temos que $u \in D(A)$ e $Au = v$.
+\end{definition}
+
+\begin{definition}[Transformação Linear Fechável]
+Diremos que uma transformação linear $A$ é **fechável** se $G(\overline{A})$ é gráfico de uma transformação linear. É equivalente a dizer que, sempre que uma seqüência $\{(u_n, Au_n)\}$ em $D(A) \times Y$ converge, em $X \times Y$, para $(0, v) \in X \times Y$, temos que $v = 0$.
+\end{definition}
+
+\begin{definition}[Conjunto Nunca Denso (ou Raro)]
+Se $(X , \rho)$ for um espaço métrico, um conjunto $A \subset X$ será **nunca denso** ou **raro** se o seu fecho tiver interior vazio.
+\end{definition}
+
+\begin{definition}[Conjunto de Primeira Categoria]
+Um conjunto $A \subset X$ será de **Primeira Categoria** em $X$ se for união enumerável de conjuntos nunca densos.
+\end{definition}
+
+\begin{definition}[Conjunto de Segunda Categoria]
+Um conjunto será de **Segunda Categoria** em $X$ se não for de Primeira Categoria.
+\end{definition}
+
+\begin{definition}[Aplicação Aberta]
+Sejam $X ,Y$ espaços vetoriais normados e $T : X \rightarrow Y$ uma transformação linear. Diremos que $T$ será **aberta** se $T(U)$ for aberto em $Y$, sempre que $U$ for aberto em $X$.
+\end{definition}
+\begin{proposition}[Propriedade de Esp. de 2 Categoria]
 Um espaço $(X, \rho)$ será de segunda categoria em si mesmo se, e somente se, em qualquer representação de $X$ como uma união contável de conjuntos fechados, pelo menos um deles contém uma bola aberta.
 \end{proposition}
 
-\begin{theorem}[Teorema da Categoria de Baire]
+\begin{theorem}[Categoria de Baire]
 Todo espaço métrico completo é de segunda categoria em si mesmo.
 \end{theorem}
 
-\begin{corollary}[Espaços de Banach são de Segunda Categoria]
+\begin{corollary}[Esp. de Banach são de 2 Categoria]
 Todo espaço de Banach é de segunda categoria em si mesmo.
 \end{corollary}
 
-\begin{theorem}[O Teorema do Mapeamento Aberto]
+\begin{theorem}[Mapeamento Aberto]
 Seja $X$ um espaço de Banach e $Y$ um espaço vetorial normado. Se $T \in L(X, Y)$ e $T(X)$ é de segunda categoria em $Y$, então:
 \begin{enumerate}[label=(\alph*)]
     \item $T$ será sobrejetor;
@@ -149,7 +316,7 @@ Seja $X$ um espaço de Banach e $Y$ um espaço vetorial normado. Se $T \in L(X, 
 \end{enumerate}
 \end{theorem}
 
-\begin{lemma}[Condição Equivalente para um Mapeamento Aberto]
+\begin{lemma}[Equivalência de Mapeamento Aberto]
 Sejam $X, Y$ espaços vetoriais normados e $T: X \to Y$ uma transformação linear. As seguintes afirmações são equivalentes:
 \begin{enumerate}[label=(\alph*)]
     \item $T$ é um mapeamento aberto;
@@ -157,11 +324,11 @@ Sejam $X, Y$ espaços vetoriais normados e $T: X \to Y$ uma transformação line
 \end{enumerate}
 \end{lemma}
 
-\begin{lemma}[Uma Condição para a Inclusão da Imagem]
+\begin{lemma}[Condição p. Inclusão da Imagem]
 Se $X$ é um espaço de Banach, $Y$ é um espaço vetorial normado e $T \in L(X, Y)$ é tal que, para algum $r > 0$, $B_r^Y(0) \subset [T(B_1^X(0))]^-$, então $B_{r/2}^Y(0) \subset T(B_1^X(0))$.
 \end{lemma}
 
-\begin{corollary}[Corolários do Teorema do Mapeamento Aberto]
+\begin{corollary}[do Teorema do Mapeamento Aberto]
 Sejam $X$ e $Y$ espaços de Banach.
 \begin{enumerate}[label=(\alph*)]
     \item Se $T \in L(X, Y)$ é sobrejetor, então $T$ é aberto.
@@ -169,7 +336,7 @@ Sejam $X$ e $Y$ espaços de Banach.
 \end{enumerate}
 \end{corollary}
 
-\begin{theorem}[O Princípio da Limitação Uniforme]
+\begin{theorem}[Princípio da Limitação Uniforme]
 Sejam $X$ e $Y$ espaços vetoriais normados e $A \subset L(X, Y)$.
 \begin{enumerate}[label=(\alph*)]
     \item Se $\{x \in X: \sup\{\Vert Tx \Vert : T \in A\} < \infty\}$ é de segunda categoria, então $\sup\{\Vert T \Vert : T \in A\} < \infty$.
@@ -190,89 +357,35 @@ Seja $X$ um espaço de Banach e $B^* \subset X^*$. Suponha que para todo $x \in 
 Se $X$ e $Y$ são espaços de Banach e $T: X \to Y$ é fechada, então $T$ é limitada.
 \end{theorem}
 \end{multicols}
-
-\section{Operadores Duais e Anuladores}
-\begin{multicols}{3}
-\begin{proposition}[O Operador Dual é Fechado]
-Se $X$ e $Y$ são espaços vetoriais normados e $A: D(A) \subset X \to Y$ é linear e densamente definido, então $A^*: D(A^*) \subset Y^* \to X^*$ é um operador linear fechado.
-\end{proposition}
-
-\begin{lemma}[A Norma do Operador Dual]
-Sejam $X$ e $Y$ espaços de Banach sobre $\mathbb{K}$ e $A \in L(X, Y)$; então, $A^* \in L(Y^*, X^*)$ e $\Vert A \Vert_{L(X, Y)} = \Vert A^* \Vert_{L(Y^*, X^*)}$.
-\end{lemma}
-
-\begin{lemma}[Densidade do Domínio do Operador Dual]
-Seja $Y$ um espaço de Banach reflexivo sobre $\mathbb{K}$. Se $A: D(A) \subset X \to Y$ é fechado e densamente definido, então $D(A^*)$ é denso em $Y^*$.
-\end{lemma}
-
-\begin{theorem}[O Inverso de um Operador Dual]
-Se $S: D(S) \subset X \to X$ é um operador linear injetivo, densamente definido com imagem densa, então $S^*: D(S^*) \subset X^* \to X^*$ é bem-definido, injetivo, e $(S^*)^{-1} = (S^{-1})^*$.
-\end{theorem}
-
-\begin{proposition}[Propriedades de Anuladores]
-Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$.
-\begin{enumerate}
-    \item Se $M$ é um subespaço vetorial de $X$, então $(M^\perp)^\perp = \bar{M}$.
-    \item Se $N^*$ é um subespaço vetorial de $X^*$, então $((N^*)^\perp)^\perp \supset \bar{N^*}$ (com a igualdade valendo se $X$ é reflexivo).
-\end{enumerate}
-\end{proposition}
-
-\begin{lemma}[Anuladores e Inclusão de Subespaços]
-Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$, $M_1, M_2$ subespaços vetoriais de $X$ com $M_1 \subset M_2$, e $N_1^*, N_2^*$ subespaços vetoriais de $X^*$ com $N_1^* \subset N_2^*$. Então $M_2^\perp \subset M_1^\perp$ e $(N_2^*)^\perp \subset (N_1^*)^\perp$.
-\end{lemma}
-
-\begin{proposition}[O Gráfico do Operador Dual como um Anulador]
-Seja $A: D(A) \subset X \to X$ um operador linear densamente definido. O gráfico de $A^*$, $G(A^*) = \{(x^*, A^*x^*) : x^* \in D(A^*)\}$, é o anulador em $X^* \times X^*$ de $\{(-Ax, x) : x \in D(A)\}$.
-\end{proposition}
-
-\begin{proposition}[O Domínio do Operador Dual é um Conjunto Total]
-Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ é total.
-\end{proposition}
-\end{multicols}
-
-
-
-
-
-\section{Operadores Compactos}
-\begin{multicols}{3}
-\begin{theorem}[O Espaço dos Operadores Compactos é um Subespaço Fechado]
-Sejam $X, Y$ espaços de Banach sobre $\mathbb{K}$. Então $K(X, Y)$ é um subespaço fechado de $L(X, Y)$.
-\end{theorem}
-
-\begin{theorem}[Propriedades de Operadores Compactos]
-Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ e $B \in L(Y, Z)$.
-\begin{enumerate}[label=(\alph*)]
-    \item Se $A \in K(X, Y)$ ou $B \in K(Y, Z)$, então $B \circ A \in K(X, Z)$.
-    \item Se $A \in K(X, Y)$, então $A^* \in K(Y^*, X^*)$.
-    \item Se $A \in K(X, Y)$ e $R(A)$ é um subespaço fechado de $Y$, então $R(A)$ tem dimensão finita.
-\end{enumerate}
-\end{theorem}
-\end{multicols}
 \newpage
-
-
-
-
 \section{Espaços de Hilbert: Projeções, Representação e Bases}
 \begin{multicols}{3}
-\begin{lemma}[Projeção em um Conjunto Convexo Fechado]
+
+\begin{definition}[Espaço com Produto Interno]
+Um espaço vetorial $H$ juntamente com um produto interno é dito um **espaço com produto interno**.
+\end{definition}
+
+\begin{definition}[Espaço de Hilbert]
+Se um espaço com produto interno $H$ é completo dizemos que $H$ é um **espaço de Hilbert**.
+\end{definition}
+
+\begin{lemma}[Projeção em um Convexo Fechado]
 Se $K$ é um subconjunto fechado e convexo de um espaço de Hilbert $H$ e $u_0 \in H$, existe um único $v_0 \in K$ tal que $\Vert u_0 - v_0 \Vert = \inf_{v \in K} \Vert u_0 - v \Vert$.
 \end{lemma}
 
-\begin{proposition}[Caracterização do Operador de Projeção]
+\begin{proposition}[Caract. do Operacão de Projeção]
 Seja $H$ um espaço de Hilbert, $K \subset H$ fechado e convexo, e $u_0 \in H$. Então $\text{Re}\langle u_0 - P_K u_0, w - P_K u_0 \rangle \le 0$, para todo $w \in K$.
 \end{proposition}
 
-\begin{proposition}[Caracterização Conversa da Projeção]
+\begin{proposition}[Caract. Conversa da Projeção]
 Seja $H$ um espaço de Hilbert e $K \subset H$ um conjunto convexo fechado e não vazio. Se, dado $u_0 \in H$, existe $v_0 \in K$ tal que $\text{Re}\langle u_0 - v_0, w - v_0 \rangle \le 0$ para todo $w \in K$, então $v_0 = P_K u_0$.
 \end{proposition}
 
-\begin{corollary}[Caracterização e Linearidade da Projeção]
+\begin{corollary}[Caract. e Linearidade da Projeção ]
 Se $H$ é um espaço de Hilbert e $M$ é um subespaço vetorial fechado de $H$, então $P_M: H \to H$ é caracterizado por $v = P_M u$ se, e somente se, $\langle u - v, w \rangle = 0$, para todo $w \in M$. Disso se segue que $P_M$ é linear e $P_M^2 = P_M$.
 \end{corollary}
 
-\begin{theorem}[Propriedades do Operador de Projeção]
+\begin{theorem}[Propriedades do Op. de Projeção]
 Se $H$ é um espaço de Hilbert e $K \subset H$ é um conjunto convexo fechado, então $\Vert P_K u_1 - P_K u_2 \Vert \le \Vert u_1 - u_2 \Vert$, para todos $u_1, u_2 \in H$.
 \end{theorem}
 
@@ -292,7 +405,7 @@ Se $\{u_\alpha\}_{\alpha \in A}$ é um conjunto ortonormal em $H$, então para $
 Em particular, $\{\alpha \in A : \langle u, u_\alpha \rangle \neq 0\}$ é enumerável.
 \end{theorem}
 
-\begin{theorem}[Condições Equivalentes para uma Base Ortonormal]
+\begin{theorem}[Equiv. p. Base Ortonormal]
 Se $\{u_\alpha\}_{\alpha \in A}$ é um conjunto ortonormal em $H$, as seguintes afirmações são equivalentes:
 \begin{enumerate}[label=(\alph*)]
     \item (Completude) Se $\langle u, u_\alpha \rangle = 0$ para todo $\alpha \in A$, então $u = 0$.
@@ -312,7 +425,7 @@ Se $\{u_\alpha\}_{\alpha \in A}$ é um conjunto ortonormal em $H$, as seguintes 
 Todo espaço de Hilbert tem uma base ortonormal.
 \end{proposition}
 
-\begin{theorem}[Separabilidade e Bases Ortonormais Enumeráveis]
+\begin{theorem}[Separabilidade e Bases]
 Um espaço de Hilbert $H$ é separável se e somente se ele tem uma base ortonormal enumerável, e neste caso, toda base ortonormal de $H$ é enumerável.
 \end{theorem}
 
@@ -320,6 +433,105 @@ Um espaço de Hilbert $H$ é separável se e somente se ele tem uma base ortonor
 Seja $\{u_\alpha\}_{\alpha \in A}$ uma base ortonormal de $H$. Então a correspondência $x \to \hat{x}$ definida por $\hat{x}(\alpha) = \langle x, u_\alpha \rangle$ é uma transformação unitária de $H$ para $l^2(A)$.
 \end{proposition}
 \end{multicols}
+
+
+
+\section{Operadores Duais e Anuladores}
+\begin{multicols}{3}
+\begin{definition}[Operador Dual ($A^*$)]
+Se $A : D(A) \subset X \rightarrow Y$ é uma transformação linear densamente definida, o **dual** $A^* : D(A^*) \subset Y^* \rightarrow X^*$ de $A$ é o operador linear definido por: $D(A^*) = \{y^* \in Y^* : y^* \circ A : D(A) \subset X \rightarrow K \text{ é limitado }\}$, ou equivalentemente, $D(A^*) = \{y^* \in Y^*:\exists z^* \in X^* \text{ tal que } \langle Ax , y^*\rangle=\langle x , z^*\rangle, \forall x \in D(A)\}$. Se $y^* \in D(A^*)$, define-se $A^*y^* := z^*$.
+\end{definition}
+
+\begin{definition}[Anulador]
+Seja $X$ um espaço vetorial normado sobre $K$. Para um subespaço vetorial $M \subset X$, o **anulador de $M$** é $M^{\perp} = \{f \in X^* : f(x) = 0, \forall x \in M\}$. Para um subespaço vetorial $N^* \subset X^*$, o **anulador de $N^*$** é $(N^*)^{\perp} = \{x \in X : f(x) = 0, \forall f \in N\}$.
+\end{definition}
+
+\begin{definition}[Conjunto Total]
+Um subconjunto $M^* \subset X^*$ é dito **total** se $(M^*)^{\perp} = \{0\}$.
+\end{definition}
+\begin{proposition}[O Operador Dual é Fechado]
+Se $X$ e $Y$ são espaços vetoriais normados e $A: D(A) \subset X \to Y$ é linear e densamente definido, então $A^*: D(A^*) \subset Y^* \to X^*$ é um operador linear fechado.
+\end{proposition}
+
+\begin{lemma}[A Norma do Operador Dual]
+Sejam $X$ e $Y$ espaços de Banach sobre $\mathbb{K}$ e $A \in L(X, Y)$; então, $A^* \in L(Y^*, X^*)$ e $\Vert A \Vert_{L(X, Y)} = \Vert A^* \Vert_{L(Y^*, X^*)}$.
+\end{lemma}
+
+\begin{lemma}[Densidade do Domínio do Op. Dual]
+Seja $Y$ um espaço de Banach reflexivo sobre $\mathbb{K}$. Se $A: D(A) \subset X \to Y$ é fechado e densamente definido, então $D(A^*)$ é denso em $Y^*$.
+\end{lemma}
+
+\begin{theorem}[O Inverso de um Operador Dual]
+Se $S: D(S) \subset X \to X$ é um operador linear injetivo, densamente definido com imagem densa, então $S^*: D(S^*) \subset X^* \to X^*$ é bem-definido, injetivo, e $(S^*)^{-1} = (S^{-1})^*$.
+\end{theorem}
+
+\begin{proposition}[Propriedades de Anuladores]
+Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$.
+\begin{enumerate}
+    \item Se $M$ é um subespaço vetorial de $X$, então $(M^\perp)^\perp = \bar{M}$.
+    \item Se $N^*$ é um subespaço vetorial de $X^*$, então $((N^*)^\perp)^\perp \supset \bar{N^*}$ (com a igualdade valendo se $X$ é reflexivo).
+\end{enumerate}
+\end{proposition}
+
+\begin{lemma}[Anuladores e Inclusão de Sub]
+Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$, $M_1, M_2$ subespaços vetoriais de $X$ com $M_1 \subset M_2$, e $N_1^*, N_2^*$ subespaços vetoriais de $X^*$ com $N_1^* \subset N_2^*$. Então $M_2^\perp \subset M_1^\perp$ e $(N_2^*)^\perp \subset (N_1^*)^\perp$.
+\end{lemma}
+
+\begin{proposition}[Gráfico do Op. Dual como Anulador]
+Seja $A: D(A) \subset X \to X$ um operador linear densamente definido. O gráfico de $A^*$, $G(A^*) = \{(x^*, A^*x^*) : x^* \in D(A^*)\}$, é o anulador em $X^* \times X^*$ de $\{(-Ax, x) : x \in D(A)\}$.
+\end{proposition}
+
+\begin{proposition}[Domínio do Operador Dual é Total]
+Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ é total.
+\end{proposition}
+\end{multicols}
+
+
+
+
+
+\section{Operadores Compactos}
+\begin{multicols}{3}
+\begin{definition}[Operador Compacto]
+Sejam $X ,Y$ espaços de Banach sobre $K$. Diremos que um operador linear $K : X \rightarrow Y$ é **compacto** se $K (B_X^1(0))$ é um subconjunto relativamente compacto de $Y$.
+\end{definition}
+
+\begin{definition}[Operador Adjunto ($A^{\bullet}$)]
+Se $H$ é um espaço de Hilbert e $A : D(A) \subset H \rightarrow H$ é um operador densamente definido, o **adjunto** $A^{\bullet} : D(A^{\bullet}) \subset H \rightarrow H$ de $A$ é definido por $D(A^{\bullet}) = \{u \in H : v \mapsto \langle Av , u\rangle_H : D(A)\rightarrow K \text{ é limitado}\}$. Se $u \in D(A^{\bullet})$, $A^{\bullet}u$ é o único elemento de $H$ tal que $\langle v ,A^{\bullet}u\rangle_H = \langle Av , u\rangle_H$, para todo $v \in D(A)$.
+\end{definition}
+
+\begin{definition}[Operador Simétrico (ou Hermitiano)]
+Seja $H$ um espaço de Hilbert sobre $K$ com produto interno $\langle \cdot, \cdot \rangle_H$. Diremos que um operador $A : D(A) \subset H \rightarrow H$ é **simétrico** (também chamado **Hermitiano** quando $K = \mathbb{C}$) se $D(A) = H$ e $A \subset A^*$; isto é, $\langle Ax, y \rangle_H = \langle x, Ay \rangle_H$ para todo $x, y \in D(A)$.
+\end{definition}
+
+\begin{definition}[Operador Auto-adjunto]
+Diremos que um operador $A$ é **auto-adjunto** se $A = A^*$.
+\end{definition}
+\begin{theorem}[Esp. Op. Compactos é Fechado]
+Sejam $X, Y$ espaços de Banach sobre $\mathbb{K}$. Então $K(X, Y)$ é um subespaço fechado de $L(X, Y)$.
+\end{theorem}
+
+\begin{theorem}[Propriedades de Op. Compactos]
+Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ e $B \in L(Y, Z)$.
+\begin{enumerate}[label=(\alph*)]
+    \item Se $A \in K(X, Y)$ ou $B \in K(Y, Z)$, então $B \circ A \in K(X, Z)$.
+    \item Se $A \in K(X, Y)$, então $A^* \in K(Y^*, X^*)$.
+    \item Se $A \in K(X, Y)$ e $R(A)$ é um subespaço fechado de $Y$, então $R(A)$ tem dimensão finita.
+\end{enumerate}
+\end{theorem}
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

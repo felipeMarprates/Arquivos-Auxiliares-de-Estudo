@@ -1,0 +1,463 @@
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern, amsmath, amsthm, amssymb, mathtools}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+%% ===== Highlighting style requested by the user =====
+%% The user prefers the *names* of definitions/theorems highlighted.
+\newcommand{\defnname}[1]{\colorbox{yellow}{\strut #1}}
+%\newcommand{\thmname}[1]{\colorbox{yellow}{\strut #1}}
+
+\newtheoremstyle{mystyle}% name
+  {6pt}% Space above
+  {6pt}% Space below
+  {\itshape}% Body font
+  {}% Indent amount
+  {\bfseries}% Theorem head font
+  {.}% Punctuation after theorem head
+  {0.5em}% Space after theorem head
+  {\thmname{#1}~\thmnumber{#2}\thmnote{ \colorbox{yellow}{\strut [#3]}}}% Theorem head spec
+
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Teorema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{lemma}{Lema}
+
+\newtheoremstyle{defstyle}
+  {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{0.5em}{\defnname{#1}~\thmnumber{#2}\thmnote{ \colorbox{yellow}{\strut [#3]}}}
+\theoremstyle{defstyle}
+\newtheorem{definition}{Definição}
+\newtheorem{example}{Exemplo}
+\newtheorem{remark}{Observação}
+
+\title{Resumo \& Apêndice (Mesclado)}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Parte Original (do arquivo \texttt{analise-funcional-resumo.tex})}
+
+\noindent\textit{Nota: O conteúdo original completo foi incorporado abaixo como comentário para evitar conflitos de preâmbulo. Para compilar em conjunto, copie as seções internas do arquivo original para dentro deste documento (após remover o preâmbulo duplicado).}
+
+\bigskip
+
+\noindent\textbf{Cópia literal do conteúdo original (comentado para não quebrar a compilação):}
+\begin{flushleft}
+\begin{minipage}{\textwidth}
+\begingroup
+\makeatletter
+\catcode`\%=12
+% 
+% \documentclass[12pt]{article}
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[portuguese]{babel}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsthm}
+% \usepackage{geometry}
+% \geometry{a4paper, margin=1in, landscape}
+% \usepackage{multicol}
+% \usepackage{enumitem}
+% \setlength{\columnsep}{18pt}
+% \raggedcolumns
+% \pagenumbering{gobble} % Remove os números de página
+% 
+% 
+% % --- Definições de ambiente para Teoremas, etc. ---
+% \newtheorem{theorem}{Teorema}[section]
+% \newtheorem{proposition}[theorem]{Proposição}
+% \newtheorem{lemma}[theorem]{Lema}
+% \newtheorem{corollary}[theorem]{Corolário}
+% 
+% \begin{document}
+% 
+% \title{Sumário de Teoremas, Proposições e Lemas Fundamentais em Análise Funcional}
+% \author{}
+% \date{}
+% 
+% \section{Desigualdades Fundamentais para Espaços Normados}
+% \begin{multicols}{3}
+% Essas desigualdades são ferramentas essenciais para provar a desigualdade triangular para as p-normas, garantindo a validade dessas normas.
+% 
+% \begin{lemma}[Desigualdade de Young]
+% Se $p \in (1, \infty)$, $q \in (1, \infty)$ é tal que $\frac{1}{p} + \frac{1}{q} = 1$ e $a, b \in [0, \infty)$, então $a^{1/p} b^{1/q} \le \frac{a}{p} + \frac{b}{q}$.
+% \end{lemma}
+% 
+% \begin{lemma}[Desigualdade de Hölder]
+% Se $p \in (1, \infty)$ e $q \in (1, \infty)$ é tal que $\frac{1}{p} + \frac{1}{q} = 1$, então
+% \[
+% \sum_{i=1}^{N} |x_i y_i| \le \left[ \sum_{i=1}^{N} |x_i|^p \right]^{1/p} \left[ \sum_{i=1}^{N} |y_i|^q \right]^{1/q}
+% \]
+% para todo $x = (x_1, \dots, x_N), y = (y_1, \dots, y_N) \in \mathbb{R}^N$.
+% \end{lemma}
+% 
+% \begin{lemma}[Desigualdade de Minkowski]
+% Se $p \in [1, \infty]$, então
+% \[
+% \left[ \sum_{i=1}^{N} |x_i + y_i|^p \right]^{1/p} \le \left[ \sum_{i=1}^{N} |x_i|^p \right]^{1/p} + \left[ \sum_{i=1}^{N} |y_i|^p \right]^{1/p}
+% \]
+% ou, em outras palavras, $\Vert x + y \Vert_p \le \Vert x \Vert_p + \Vert y \Vert_p$ para todo $x = (x_1, \dots, x_N), y = (y_1, \dots, y_N) \in \mathbb{R}^N$.
+% \end{lemma}
+% 
+% Essas desigualdades ajudam a estabelecer as propriedades fundamentais dos espaços normados, o que leva naturalmente ao estudo de sua completude e do comportamento das transformações entre eles.
+% \end{multicols}
+% 
+% \section{Completude e Transformações Lineares}
+% \begin{multicols}{3}
+% \begin{theorem}[Uma Condição para a Completude]
+% Um espaço vetorial normado é completo se, e somente se, toda série absolutamente convergente é convergente.
+% \end{theorem}
+% 
+% \begin{proposition}[Equivalências para Transformações Lineares Contínuas]
+% Se $X, Y$ são espaços vetoriais normados e $T: X \to Y$ é linear, as seguintes afirmações são equivalentes:
+% \begin{enumerate}[label=(\alph*)]
+%     \item $T$ é contínua;
+%     \item $T$ é contínua em $0$;
+%     \item $T$ é limitada.
+% \end{enumerate}
+% \end{proposition}
+% 
+% \begin{proposition}[Completude de $L(X, Y)$]
+% Se $Y$ é completo, então $L(X, Y)$ é completo.
+% \end{proposition}
+% O conceito de transformações lineares limitadas entre espaços completos (espaços de Banach) leva diretamente ao estudo mais detalhado de funcionais lineares, que são centrais para os teoremas de Hahn-Banach.
+% \end{multicols}
+% \newpage
+% \section{Os Teoremas de Hahn-Banach e Suas Consequências}
+% \begin{multicols}{3}
+% \begin{proposition}[Relação entre Funcionais Lineares Reais e Complexos]
+% Seja $X$ um espaço vetorial sobre $\mathbb{C}$. Se $f: X \to \mathbb{C}$ é um funcional linear e $u = \text{Re}(f)$, então $u$ é um funcional linear real e $f(x) = u(x) - iu(ix)$ para todo $x \in X$.
+% Reciprocamente, se $u: X \to \mathbb{R}$ é um funcional linear real e $f: X \to \mathbb{C}$ é definido por $f(x) = u(x) - iu(ix)$, então $f$ é um funcional linear complexo. Se $X$ é normado, $f$ é limitado se e somente se $u$ é limitado, e neste caso $\Vert f \Vert = \Vert u \Vert$.
+% \end{proposition}
+% 
+% \begin{theorem}[O Teorema de Hahn-Banach (Espaços Vetoriais Reais)]
+% Sejam $X$ um espaço vetorial real, $p$ um funcional sublinear em $X$, $M$ um subespaço vetorial de $X$ e $f$ um funcional linear em $M$ tal que $f(x) \le p(x)$ para todo $x \in M$. Então existe um funcional linear $F$ em $X$ tal que $F(x) \le p(x)$ para todo $x \in X$ e $F|_M = f$.
+% \end{theorem}
+% 
+% \begin{theorem}[O Teorema de Hahn-Banach (Espaços Vetoriais Complexos)]
+% Sejam $X$ um espaço vetorial complexo, $p$ uma seminorma em $X$, $M$ um subespaço vetorial de $X$ e $f: M \to \mathbb{C}$ um funcional linear com $|f(x)| \le p(x)$ para $x \in M$.
+% Então existe $F: X \to \mathbb{C}$, um funcional linear, tal que $|F(x)| \le p(x)$ para todo $x \in X$ e $F|_M = f$.
+% \end{theorem}
+% 
+% \begin{theorem}[Corolários de Hahn-Banach]
+% Seja $X$ um espaço vetorial normado.
+% \begin{enumerate}
+%     \item Se $M$ é um subespaço vetorial fechado de $X$ e $x \in X \setminus M$, existe $f \in X^*$ tal que $f(x) \neq 0$ e $f|_M = 0$. Na verdade, se $\delta = \inf_{y \in M} \Vert x - y \Vert$, $f$ pode ser escolhido tal que $\Vert f \Vert = 1$ e $f(x) = \delta$.
+%     \item Se $x \neq 0$, existe $f \in X^*$ tal que $\Vert f \Vert = 1$ e $f(x) = \Vert x \Vert$.
+%     \item Os funcionais lineares limitados em $X$ separam pontos.
+%     \item Se $x \in X$, defina $\hat{x}: X^* \to \mathbb{C}$ por \mbox{$\hat{x}(f) = f(x)$}, $\forall f \in X^*$. Então a transformação $x \to \hat{x}$ é uma isometria linear de $X$ em $X^{**}$.
+% \end{enumerate}
+% \end{theorem}
+% 
+% \begin{proposition}[Hiperplanos Fechados]
+% O hiperplano com equação $[f = \alpha]$ é fechado se e somente se $f$ é contínuo.
+% \end{proposition}
+% 
+% \begin{lemma}[O Funcional de Minkowski]
+% Seja $X$ um espaço vetorial normado sobre $\mathbb{R}$ e $C \subset X$ um conjunto convexo aberto com $0 \in C$. Para cada $x \in X$ defina $p(x) = \inf\{\alpha > 0 : \alpha^{-1}x \in C\}$ ($p$ é o funcional de Minkowski de $C$). Então, $p$ é um funcional sublinear e existe $M$ tal que $0 \le p(x) \le M\Vert x \Vert$, $\forall x \in X$, e $C = \{x \in X: p(x) < 1\}$.
+% \end{lemma}
+% 
+% \begin{lemma}[Separação de um Ponto de um Conjunto Convexo]
+% Sejam $C \subset X$ um conjunto convexo aberto e não vazio e $x_0 \in X \setminus C$. Então existe $f \in X^*$ tal que $f(x) < f(x_0)$ para todo $x \in C$. Em particular, o hiperplano fechado com equação $[f = f(x_0)]$ separa fracamente $C$ de $x_0$.
+% \end{lemma}
+% 
+% \begin{theorem}[Primeira Forma Geométrica do Teorema de Hahn-Banach]
+% Sejam $X$ um espaço vetorial normado real e $A, B \subset X$ dois conjuntos convexos, não vazios e disjuntos. Se $A$ é aberto, existe um hiperplano fechado que separa fracamente $A$ e $B$.
+% \end{theorem}
+% 
+% \begin{theorem}[Segunda Forma Geométrica do Teorema de Hahn-Banach]
+% Sejam $X$ um espaço vetorial normado real, e $A$ e $B$ conjuntos convexos, não vazios e disjuntos em $X$. Suponha que $A$ é fechado e $B$ é compacto. Então existe um hiperplano fechado que separa fortemente $A$ e $B$.
+% \end{theorem}
+% 
+% \begin{corollary}[Anuladores para Subespaços Próprios]
+% Sejam $X$ um espaço vetorial normado sobre $\mathbb{K}$ e $F \subset X$ um subespaço vetorial próprio de $X$ ($\bar{F} \neq X$). Então, existe $f \in X^*$, $f \neq 0$ tal que $f(x) = 0$, $\forall x \in F$.
+% \end{corollary}
+% \end{multicols}
+% 
+% \section{Consequências do Teorema da Categoria de Baire}
+% \begin{multicols}{3}
+% \begin{proposition}[Propriedade de Espaços de Segunda Categoria]
+% Um espaço $(X, \rho)$ será de segunda categoria em si mesmo se, e somente se, em qualquer representação de $X$ como uma união contável de conjuntos fechados, pelo menos um deles contém uma bola aberta.
+% \end{proposition}
+% 
+% \begin{theorem}[Teorema da Categoria de Baire]
+% Todo espaço métrico completo é de segunda categoria em si mesmo.
+% \end{theorem}
+% 
+% \begin{corollary}[Espaços de Banach são de Segunda Categoria]
+% Todo espaço de Banach é de segunda categoria em si mesmo.
+% \end{corollary}
+% 
+% \begin{theorem}[O Teorema do Mapeamento Aberto]
+% Seja $X$ um espaço de Banach e $Y$ um espaço vetorial normado. Se $T \in L(X, Y)$ e $T(X)$ é de segunda categoria em $Y$, então:
+% \begin{enumerate}[label=(\alph*)]
+%     \item $T$ será sobrejetor;
+%     \item $T$ será um mapeamento aberto; e
+%     \item $Y$ será de segunda categoria.
+% \end{enumerate}
+% \end{theorem}
+% 
+% \begin{lemma}[Condição Equivalente para um Mapeamento Aberto]
+% Sejam $X, Y$ espaços vetoriais normados e $T: X \to Y$ uma transformação linear. As seguintes afirmações são equivalentes:
+% \begin{enumerate}[label=(\alph*)]
+%     \item $T$ é um mapeamento aberto;
+%     \item Existe $r > 0$ tal que $T(B_1^X(0)) \supset B_r^Y(0)$.
+% \end{enumerate}
+% \end{lemma}
+% 
+% \begin{lemma}[Uma Condição para a Inclusão da Imagem]
+% Se $X$ é um espaço de Banach, $Y$ é um espaço vetorial normado e $T \in L(X, Y)$ é tal que, para algum $r > 0$, $B_r^Y(0) \subset [T(B_1^X(0))]^-$, então $B_{r/2}^Y(0) \subset T(B_1^X(0))$.
+% \end{lemma}
+% 
+% \begin{corollary}[Corolários do Teorema do Mapeamento Aberto]
+% Sejam $X$ e $Y$ espaços de Banach.
+% \begin{enumerate}[label=(\alph*)]
+%     \item Se $T \in L(X, Y)$ é sobrejetor, então $T$ é aberto.
+%     \item Se $T \in L(X, Y)$ é bijetor, então $T$ é um isomorfismo.
+% \end{enumerate}
+% \end{corollary}
+% 
+% \begin{theorem}[O Princípio da Limitação Uniforme]
+% Sejam $X$ e $Y$ espaços vetoriais normados e $A \subset L(X, Y)$.
+% \begin{enumerate}[label=(\alph*)]
+%     \item Se $\{x \in X: \sup\{\Vert Tx \Vert : T \in A\} < \infty\}$ é de segunda categoria, então $\sup\{\Vert T \Vert : T \in A\} < \infty$.
+%     \item Se $X$ é um espaço de Banach e $\{x \in X: \sup\{\Vert Tx \Vert : T \in A\} < \infty\} = X$, então $\sup\{\Vert T \Vert : T \in A\} < \infty$.
+%     \item Se $X$ é um espaço de Banach, $\{T_n : n \in \mathbb{N}\} \subset L(X, Y)$, $\{T_nx\}$ é convergente para cada $x \in X$, e $T: X \to Y$ é definido por $Tx = \lim_{n \to \infty} T_nx$, então $T \in L(X, Y)$ e $\Vert T \Vert \le \liminf \Vert T_n \Vert$.
+% \end{enumerate}
+% \end{theorem}
+% 
+% \begin{corollary}[Limitação de Subconjuntos em $X$]
+% Se $X$ é um espaço de Banach, $B \subset X$, e $f(B) = \{f(b): b \in B\}$ é limitado para todo $f \in X^*$, então $B$ é limitado.
+% \end{corollary}
+% 
+% \begin{corollary}[Limitação de Subconjuntos em $X^*$]
+% Seja $X$ um espaço de Banach e $B^* \subset X^*$. Suponha que para todo $x \in X$ o conjunto $B^*(x) = \{b^*(x): b^* \in B^*\}$ é limitado. Então $B^*$ é limitado.
+% \end{corollary}
+% 
+% \begin{theorem}[O Teorema do Gráfico Fechado]
+% Se $X$ e $Y$ são espaços de Banach e $T: X \to Y$ é fechada, então $T$ é limitada.
+% \end{theorem}
+% \end{multicols}
+% 
+% \section{Operadores Duais e Anuladores}
+% \begin{multicols}{3}
+% \begin{proposition}[O Operador Dual é Fechado]
+% Se $X$ e $Y$ são espaços vetoriais normados e $A: D(A) \subset X \to Y$ é linear e densamente definido, então $A^*: D(A^*) \subset Y^* \to X^*$ é um operador linear fechado.
+% \end{proposition}
+% 
+% \begin{lemma}[A Norma do Operador Dual]
+% Sejam $X$ e $Y$ espaços de Banach sobre $\mathbb{K}$ e $A \in L(X, Y)$; então, $A^* \in L(Y^*, X^*)$ e $\Vert A \Vert_{L(X, Y)} = \Vert A^* \Vert_{L(Y^*, X^*)}$.
+% \end{lemma}
+% 
+% \begin{lemma}[Densidade do Domínio do Operador Dual]
+% Seja $Y$ um espaço de Banach reflexivo sobre $\mathbb{K}$. Se $A: D(A) \subset X \to Y$ é fechado e densamente definido, então $D(A^*)$ é denso em $Y^*$.
+% \end{lemma}
+% 
+% \begin{theorem}[O Inverso de um Operador Dual]
+% Se $S: D(S) \subset X \to X$ é um operador linear injetivo, densamente definido com imagem densa, então $S^*: D(S^*) \subset X^* \to X^*$ é bem-definido, injetivo, e $(S^*)^{-1} = (S^{-1})^*$.
+% \end{theorem}
+% 
+% \begin{proposition}[Propriedades de Anuladores]
+% Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$.
+% \begin{enumerate}
+%     \item Se $M$ é um subespaço vetorial de $X$, então $(M^\perp)^\perp = \bar{M}$.
+%     \item Se $N^*$ é um subespaço vetorial de $X^*$, então $((N^*)^\perp)^\perp \supset \bar{N^*}$ (com a igualdade valendo se $X$ é reflexivo).
+% \end{enumerate}
+% \end{proposition}
+% 
+% \begin{lemma}[Anuladores e Inclusão de Subespaços]
+% Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$, $M_1, M_2$ subespaços vetoriais de $X$ com $M_1 \subset M_2$, e $N_1^*, N_2^*$ subespaços vetoriais de $X^*$ com $N_1^* \subset N_2^*$. Então $M_2^\perp \subset M_1^\perp$ e $(N_2^*)^\perp \subset (N_1^*)^\perp$.
+% \end{lemma}
+% 
+% \begin{proposition}[O Gráfico do Operador Dual como um Anulador]
+% Seja $A: D(A) \subset X \to X$ um operador linear densamente definido. O gráfico de $A^*$, $G(A^*) = \{(x^*, A^*x^*) : x^* \in D(A^*)\}$, é o anulador em $X^* \times X^*$ de $\{(-Ax, x) : x \in D(A)\}$.
+% \end{proposition}
+% 
+% \begin{proposition}[O Domínio do Operador Dual é um Conjunto Total]
+% Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ é total.
+% \end{proposition}
+% \end{multicols}
+% 
+% 
+% 
+% 
+% 
+% \section{Operadores Compactos}
+% \begin{multicols}{3}
+% \begin{theorem}[O Espaço dos Operadores Compactos é um Subespaço Fechado]
+% Sejam $X, Y$ espaços de Banach sobre $\mathbb{K}$. Então $K(X, Y)$ é um subespaço fechado de $L(X, Y)$.
+% \end{theorem}
+% 
+% \begin{theorem}[Propriedades de Operadores Compactos]
+% Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ e $B \in L(Y, Z)$.
+% \begin{enumerate}[label=(\alph*)]
+%     \item Se $A \in K(X, Y)$ ou $B \in K(Y, Z)$, então $B \circ A \in K(X, Z)$.
+%     \item Se $A \in K(X, Y)$, então $A^* \in K(Y^*, X^*)$.
+%     \item Se $A \in K(X, Y)$ e $R(A)$ é um subespaço fechado de $Y$, então $R(A)$ tem dimensão finita.
+% \end{enumerate}
+% \end{theorem}
+% \end{multicols}
+% \newpage
+% 
+% 
+% 
+% 
+% \section{Espaços de Hilbert: Projeções, Representação e Bases}
+% \begin{multicols}{3}
+% \begin{lemma}[Projeção em um Conjunto Convexo Fechado]
+% Se $K$ é um subconjunto fechado e convexo de um espaço de Hilbert $H$ e $u_0 \in H$, existe um único $v_0 \in K$ tal que $\Vert u_0 - v_0 \Vert = \inf_{v \in K} \Vert u_0 - v \Vert$.
+% \end{lemma}
+% 
+% \begin{proposition}[Caracterização do Operador de Projeção]
+% Seja $H$ um espaço de Hilbert, $K \subset H$ fechado e convexo, e $u_0 \in H$. Então $\text{Re}\langle u_0 - P_K u_0, w - P_K u_0 \rangle \le 0$, para todo $w \in K$.
+% \end{proposition}
+% 
+% \begin{proposition}[Caracterização Conversa da Projeção]
+% Seja $H$ um espaço de Hilbert e $K \subset H$ um conjunto convexo fechado e não vazio. Se, dado $u_0 \in H$, existe $v_0 \in K$ tal que $\text{Re}\langle u_0 - v_0, w - v_0 \rangle \le 0$ para todo $w \in K$, então $v_0 = P_K u_0$.
+% \end{proposition}
+% 
+% \begin{corollary}[Caracterização e Linearidade da Projeção]
+% Se $H$ é um espaço de Hilbert e $M$ é um subespaço vetorial fechado de $H$, então $P_M: H \to H$ é caracterizado por $v = P_M u$ se, e somente se, $\langle u - v, w \rangle = 0$, para todo $w \in M$. Disso se segue que $P_M$ é linear e $P_M^2 = P_M$.
+% \end{corollary}
+% 
+% \begin{theorem}[Propriedades do Operador de Projeção]
+% Se $H$ é um espaço de Hilbert e $K \subset H$ é um conjunto convexo fechado, então $\Vert P_K u_1 - P_K u_2 \Vert \le \Vert u_1 - u_2 \Vert$, para todos $u_1, u_2 \in H$.
+% \end{theorem}
+% 
+% \begin{theorem}[O Teorema da Decomposição Ortogonal]
+% Seja $H$ um espaço de Hilbert e $M$ um subespaço vetorial fechado de $H$. Então $M \oplus M^\perp = H$; ou seja, cada $u \in H$ pode ser unicamente expresso como $u = w + v$, onde $w \in M$ e $v \in M^\perp$.
+% \end{theorem}
+% 
+% \begin{theorem}[O Teorema da Representação de Riesz]
+% Se $f \in H^*$, existe um único $y \in H$ tal que $f(x) = \langle x, y \rangle$ para todo $x \in H$.
+% \end{theorem}
+% 
+% \begin{theorem}[A Desigualdade de Bessel]
+% Se $\{u_\alpha\}_{\alpha \in A}$ é um conjunto ortonormal em $H$, então para $u \in H$,
+% \[
+% \sum_{\alpha \in A} |\langle u, u_\alpha \rangle|^2 \le \Vert u \Vert^2.
+% \]
+% Em particular, $\{\alpha \in A : \langle u, u_\alpha \rangle \neq 0\}$ é enumerável.
+% \end{theorem}
+% 
+% \begin{theorem}[Condições Equivalentes para uma Base Ortonormal]
+% Se $\{u_\alpha\}_{\alpha \in A}$ é um conjunto ortonormal em $H$, as seguintes afirmações são equivalentes:
+% \begin{enumerate}[label=(\alph*)]
+%     \item (Completude) Se $\langle u, u_\alpha \rangle = 0$ para todo $\alpha \in A$, então $u = 0$.
+%     \item (Identidade de Parseval) Para todo $u \in H$,
+%     \[
+%     \Vert u \Vert^2 = \sum_{\alpha \in A} |\langle u, u_\alpha \rangle|^2.
+%     \]
+%     \item Para cada $u \in H$,
+%     \[
+%     u = \sum_{\alpha \in A} \langle u, u_\alpha \rangle u_\alpha,
+%     \]
+%     onde a soma tem apenas um número contável de termos não nulos e converge independentemente da ordem dos termos.
+% \end{enumerate}
+% \end{theorem}
+% 
+% \begin{proposition}[Existência de uma Base Ortonormal]
+% Todo espaço de Hilbert tem uma base ortonormal.
+% \end{proposition}
+% 
+% \begin{theorem}[Separabilidade e Bases Ortonormais Enumeráveis]
+% Um espaço de Hilbert $H$ é separável se e somente se ele tem uma base ortonormal enumerável, e neste caso, toda base ortonormal de $H$ é enumerável.
+% \end{theorem}
+% 
+% \begin{proposition}[Transformação Unitária para $l^2(A)$]
+% Seja $\{u_\alpha\}_{\alpha \in A}$ uma base ortonormal de $H$. Então a correspondência $x \to \hat{x}$ definida por $\hat{x}(\alpha) = \langle x, u_\alpha \rangle$ é uma transformação unitária de $H$ para $l^2(A)$.
+% \end{proposition}
+% \end{multicols}
+% 
+% 
+% 
+% \end{document}
+% 
+\makeatother
+\endgroup
+\end{minipage}
+\end{flushleft}
+
+\newpage
+\section{Apêndice: Quaternions, Matrizes e Conceitos Relacionados}
+
+\subsection{\defnname{Definição}: Quaternions via matrizes \(2\times2\)}
+Identificamos \( \mathbb{H} = \{a+bi+cj+dk: a,b,c,d\in\mathbb{R}\}\) com o subconjunto de \(M_2(\mathbb{C})\) dado por
+\begin{equation*}
+a+bi+cj+dk \;\longmapsto\;
+\begin{bmatrix}
+a+bi & c+di\\
+-c+di & a-bi
+\end{bmatrix}.
+\end{equation*}
+Com essa identificação, a adição e a multiplicação dos quaternions coincidem com as operações de matrizes.
+
+\begin{remark}
+A subtração é fechada porque a forma da matriz é preservada sob diferenças e porque o conjugado complexo satisfaz
+\(\overline{z_1-z_2}=\overline{z_1}-\overline{z_2}\).
+\end{remark}
+
+\subsection{\defnname{Definição}: Conjugado (adjoint) em Álgebra Linear}
+Dado \(A\in M_n(\mathbb{C})\) com produto interno padrão, o \emph{adjoint} (ou adjunta) é \(A^\ast=\overline{A}^{\,T}\), isto é,
+\(\langle Av,w\rangle=\langle v,A^\ast w\rangle\) para todos \(v,w\).
+
+\subsection{\defnname{Definição}: Field (Corpo)}
+Um \emph{field} (corpo) \(F\) é um conjunto com duas operações \(+\) e \(\cdot\) tal que \((F,+)\) é grupo abeliano, \((F\setminus\{0\},\cdot)\) é grupo abeliano, e a distributividade vale. Exemplos: \(\mathbb{Q},\mathbb{R},\mathbb{C},\mathbb{Z}_p\) com \(p\) primo.
+
+\begin{theorem}[\thmname{Teorema da Correspondência (Quocientes)}]
+Seja \(G\) um grupo e \(N\trianglelefteq G\). Há uma bijeção entre subgrupos \(H\) de \(G\) com \(N\subseteq H\subseteq G\) e subgrupos de \(G/N\), dada por \(H\mapsto H/N\). Análogo para anéis: ideais \(J\supseteq I\) correspondem a ideais de \(R/I\) via \(J\mapsto J/I\).
+\end{theorem}
+
+\subsection{\thmname{Isomorfismo} de \(Q_8\) com um subgrupo de \(GL_2(\mathbb{C})\)}
+Considere as matrizes
+\(
+I_i=\begin{bmatrix} i&0\\0&-i\end{bmatrix},\;
+I_j=\begin{bmatrix} 0&1\\-1&0\end{bmatrix},\;
+I_k=\begin{bmatrix} 0&i\\ i&0\end{bmatrix}.
+\)
+Elas satisfazem as relações \(I_i^2=I_j^2=I_k^2=-I\), \(I_iI_j=I_k\), \(I_jI_i=-I_k\), etc. A aplicação \(Q_8\to\langle I_i,I_j,I_k\rangle\) enviando \(i\mapsto I_i\), \(j\mapsto I_j\), \(k\mapsto I_k\) é um isomorfismo.
+
+\begin{theorem}[\thmname{Centro de \(\mathbb{H}\)}]
+O centro de \(\mathbb{H}\) é \(\mathbb{R}\). Na realização matricial acima, a condição de comutar com \(I_i\) e \(I_j\) força \(c=d=0\) e depois \(b=0\), de modo que
+\(
+\begin{bmatrix}a+bi&c+di\\-c+di&a-bi\end{bmatrix}
+\)
+reduz a \(aI\) com \(a\in\mathbb{R}\).
+\end{theorem}
+
+\begin{theorem}[\thmname{Centro de \(M_n(F)\)}]
+Para \(n\ge2\), o centro de \(M_n(F)\) é \(\{\lambda I:\lambda\in F\}\). Em particular, matrizes “constantes” (todas as entradas iguais) não são centrais em geral.
+\end{theorem}
+
+\subsection{\thmname{Comutatividade} e autovalores distintos}
+Se \(A\) tem autovalores distintos, então o seu centralizador é \(\{p(A):p\in F[x]\}\). Em dimensão \(2\), toda matriz que comuta com \(A\) é da forma \(\alpha I+\beta A\). Contraexemplo simples com \(A=\mathrm{diag}(1,2)\) e \(B=\begin{bmatrix}0&1\\0&0\end{bmatrix}\) dá \(AB\neq BA\).
+
+\subsection{\defnname{Definição}: Matriz inversível \(2\times2\)}
+Uma matriz \(A=\begin{bmatrix}a&b\\c&d\end{bmatrix}\) é inversível sse \(\det(A)=ad-bc\neq0\). Exemplo negativo: \(\begin{bmatrix}0&1\\0&0\end{bmatrix}\) tem determinante \(0\) e não é inversível.
+
+\subsection{\defnname{Definição}: Embutimento de \(\mathbb{C}\subset\mathbb{H}\)}
+Os elementos \(a+bi\) de \(\mathbb{C}\) correspondem a matrizes diagonais \(\mathrm{diag}(a+bi,a-bi)\). Os reais puros \(a\in\mathbb{R}\) correspondem às escalares \(aI\).
+
+\subsection{\defnname{Definição}: Conjugado complexo e propriedades}
+Para \(z_1,z_2\in\mathbb{C}\), \(\overline{z_1\pm z_2}=\overline{z_1}\pm\overline{z_2}\) e \(\overline{z_1z_2}=\overline{z_1}\,\overline{z_2}\). Usado ao verificar a estabilidade da forma matricial dos quaternions sob operações.
+
+\section*{Referências rápidas (sugestivas)}
+\begin{itemize}[nosep]
+  \item Qualquer texto de Álgebra Linear (adjunta/conjugate transpose).
+  \item Teoria de Grupos: Teorema da Correspondência; apresentação de \(Q_8\).
+  \item Álgebra: centros de anéis, \(M_n(F)\).
+\end{itemize}
+
+\end{document}
