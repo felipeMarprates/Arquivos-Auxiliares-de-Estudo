@@ -11,6 +11,7 @@
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{xcolor} % <— essencial para \colorbox
+\usepackage{comment} % Include the comment package
 
 \setlength{\columnsep}{12pt}
 \raggedcolumns
@@ -353,7 +354,7 @@ Se $X$ é um espaço de Banach, $B \subset X$, e $f(B) = \{f(b): b \in B\}$ é l
 Seja $X$ um espaço de Banach e $B^* \subset X^*$. Suponha que para todo $x \in X$ o conjunto $B^*(x) = \{b^*(x): b^* \in B^*\}$ é limitado. Então $B^*$ é limitado.
 \end{corollary}
 
-\begin{theorem}[O Teorema do Gráfico Fechado]
+\begin{theorem}[Gráfico Fechado]
 Se $X$ e $Y$ são espaços de Banach e $T: X \to Y$ é fechada, então $T$ é limitada.
 \end{theorem}
 \end{multicols}
@@ -389,11 +390,11 @@ Se $H$ é um espaço de Hilbert e $M$ é um subespaço vetorial fechado de $H$, 
 Se $H$ é um espaço de Hilbert e $K \subset H$ é um conjunto convexo fechado, então $\Vert P_K u_1 - P_K u_2 \Vert \le \Vert u_1 - u_2 \Vert$, para todos $u_1, u_2 \in H$.
 \end{theorem}
 
-\begin{theorem}[O Teorema da Decomposição Ortogonal]
+\begin{theorem}[Decomposição Ortogonal]
 Seja $H$ um espaço de Hilbert e $M$ um subespaço vetorial fechado de $H$. Então $M \oplus M^\perp = H$; ou seja, cada $u \in H$ pode ser unicamente expresso como $u = w + v$, onde $w \in M$ e $v \in M^\perp$.
 \end{theorem}
 
-\begin{theorem}[O Teorema da Representação de Riesz]
+\begin{theorem}[Representação de Riesz]
 Se $f \in H^*$, existe um único $y \in H$ tal que $f(x) = \langle x, y \rangle$ para todo $x \in H$.
 \end{theorem}
 
@@ -434,7 +435,7 @@ Seja $\{u_\alpha\}_{\alpha \in A}$ uma base ortonormal de $H$. Então a correspo
 \end{proposition}
 \end{multicols}
 
-
+\begin{comment}
 
 \section{Operadores Duais e Anuladores}
 \begin{multicols}{3}
@@ -488,8 +489,6 @@ Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ �
 
 
 
-
-
 \section{Operadores Compactos}
 \begin{multicols}{3}
 \begin{definition}[Operador Compacto]
@@ -521,18 +520,5 @@ Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ 
 \end{theorem}
 \end{multicols}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{comment}
 \end{document}

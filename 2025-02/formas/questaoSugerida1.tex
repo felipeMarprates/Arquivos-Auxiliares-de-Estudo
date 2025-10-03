@@ -1,0 +1,86 @@
+\documentclass[11pt,a4paper]{article}
+
+% Pacotes básicos
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Comando para o sinal da permutação
+\newcommand{\sgn}{\varepsilon}
+
+% Ambientes de teorema/prova
+\newtheorem{teorema}{Teorema}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolário}
+
+\theoremstyle{definition}
+\newtheorem{definicao}{Definição}
+
+\theoremstyle{remark}
+\newtheorem*{obs}{Observação}
+
+\begin{document}
+
+\section*{Exercício sugerido pelo grupo 3}
+
+Prove que o produto tensorial
+de uma forma $f \in N_p(E;\mathbb{R})$ por qualquer $g \in L_q(E;\mathbb{R})$
+é uma $(p+q)$-forma, $f \cdot g \in N_{p+q}(E;\mathbb{R})$. Onde $N_p(E;\mathbb{R})$ 
+é o núcleo do operador anti-simétrico $A$. 
+\subsection*{demonstração:}
+Seja  $f \in N_p(E;\mathbb{R})$ e $g \in L_q(E;\mathbb{R})$.\newline
+Note que, basta mostrar que $ A(Af \otimes g) = {p!} A(f \otimes g)$. Pois, $A(f)=0$,
+por hipótese, logo $(Af \otimes g)=0$. Dessa forma, é fácil ver que $A(0)=0$. Então,
+se a igualdade vale, 
+
+
+\[
+ 0 = A(Af \otimes g) =  {p!} A(f \otimes g) \implies f \otimes g \in N_{p+q}(E;\mathbb{R})
+\]
+
+Vamos mostrar que a igualdade vale. Temos que:
+\begin{align*}
+A(Af \otimes g) 
+&= \sum_{\sigma \in S_{p+q}} \sgn_{\sigma}\sigma
+\Bigg[ (\sum_{\phi \in S_p} \sgn_{\phi} \phi f)\otimes g \Bigg].
+\end{align*}
+
+Podemos, sem comprometer a expressão, enxergar $S_p$ como um subgrupo de $S_{p+q}$ 
+que fixa as $q$ últimas coordenadas. Assim,
+\begin{align*}
+A(Af \otimes g) 
+&= \sum_{\sigma \in S_{p+q}} \sgn_{\sigma}\sigma 
+\Bigg[ \sum_{\phi \in S_p < S_{p+q}}  \sgn_{\phi }\phi (f \otimes g) \Bigg].
+\end{align*}
+
+Logo,
+\begin{align*}
+A(Af \otimes g) 
+&= \sum_{\sigma \in S_{p+q}} 
+\Bigg[ \sum_{\phi \in S_p<S_{p+q}} \sgn_{\sigma} \sgn_{\phi }(\sigma \circ \phi) (f \otimes g) \Bigg].
+\end{align*}
+
+Temos que, para todo $\sigma \in S_{p+q}$, existe um único $\lambda \in S_{p+q}$ tal que 
+$\sigma = \lambda \circ \phi^{-1}$ . Assim,
+\begin{align*}
+A(Af \otimes g) 
+&= \sum_{\lambda \in S_{p+q}} \sum_{\phi \in S_q<S_{p+q}} 
+\sgn_{\lambda} \sgn_{\phi^{-1}} \sgn_{\phi} (\lambda \circ \phi^{-1} \circ \phi)(f \otimes g).
+\end{align*}
+Como o sinal da permutação vezes o sinal da permutação inversa é a identidade, Podemos simplificar:
+\begin{align*}
+A(Af \otimes g) 
+&= \sum_{\lambda \in S_{p+q}} \sum_{\phi \in S_q<S_{p+q}} 
+\sgn_{\lambda}  (\lambda)(f \otimes g).
+\end{align*}
+Portanto,
+\begin{align*}
+A(Af \otimes g)
+&= p! \sum_{\lambda \in S_{p+q}} \sgn_{\lambda}\lambda (f \otimes g) \\
+&= p! \, A(f \otimes g).
+\end{align*}
+
+
+
+\end{document}
