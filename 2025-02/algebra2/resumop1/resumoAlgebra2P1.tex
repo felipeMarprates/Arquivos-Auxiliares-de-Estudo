@@ -212,6 +212,9 @@ Se $f$ for \textbf{morfismo} e a inversa é morfismo então $f$ é isomorfismo.
 \begin{definition}[\defname{Automorfismo}]
 Se $f$ for \textbf{isomorfismo} e \textbf{endomorfismo}então $f$ é Automorfismo. 
 \end{definition}
+\begin{definition}[\defname{Monomorfismo}]
+Se $f$ for \textbf{morfismo} injetor então é monomorfismo. 
+\end{definition}
 \begin{definition}[\defname{Núcleo de um Morfismo}]
 \[
 \mathbf{\Ker(f)\stackrel{\text{DEF}}{=}\{r\in R:\ f(r)=0_S\}=f^{-1}(0_S)}.
@@ -366,5 +369,40 @@ Se \(I_1,\dots,I_n\) são ideais próprios de \(R\) dois a dois coprimos (\(I_i+
 \]
 \end{theorem}
 \end{multicols}
+\section{Corpos de Ideais Principais}
+\begin{multicols}{3}
+    
+\begin{definition}[\defname{Domínio Euclidiano}]. 
+Um \emph{domínio Euclidiano} é um domínio integral \(R\) munido de uma função 
+\(\delta : R \setminus \{0\} \to \mathbb{N}\) (chamada de \emph{função euclidiana}) tal que, para quaisquer \(a,b \in R\) com \(b \neq 0\), existem \(q,r \in R\) satisfazendo
+\[
+a = bq + r \quad \text{com} \quad r = 0 \ \text{ou} \ \delta(r) < \delta(b).
+\]
+\end{definition}
+
+\begin{definition}[\defname{Reticulado(Lattice)}]. 
+Um \emph{reticulado} é um conjunto parcialmente ordenado \((L,\leq)\) no qual quaisquer dois elementos \(x, y \in L\) possuem um \emph{mínimo superior} (ou \emph{supremo}) denotado por \(x \vee y\), e um \emph{máximo inferior} (ou \emph{ínfimo}) denotado por \(x \wedge y\).
+\end{definition}
+
+
+\begin{definition}[\defname{Corpo de frações}]. 
+Seja \(A\) um domínio integral(sem divisor por ). O \emph{corpo de frações} de \(A\) é um corpo \(Frac(A)\) 
+juntamente com um monomorfismo \(i : A \to K\) tal que cada elemento de \(K\) pode ser escrito como uma fração
+\[
+\frac{a}{b}, \quad \text{com } a,b \in A \text{ e } b \neq 0,
+\]
+e todo elemento de \(K\) é da forma \(i(a) , i(b)^{-1}\).  
+Equivalentemente, \(K\) é o menor corpo que contém \(A\).  
+\end{definition}
+
+
+\begin{proposition}[\defname{Euclidiano implica D.I.P}]
+    Todo domínio Euclidiano é domínio de ideais principais, i.e. todos ideais são gerados por um elemento.
+\end{proposition}
+\begin{proposition}[\defname{Isomorfismo com Corpo de Fracões}]
+    Se $K$ é um corpo, então $Frac(K) \cong K$
+\end{proposition}
+\end{multicols}
+
 
 \end{document}
