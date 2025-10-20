@@ -139,8 +139,11 @@ Um \(a\in R\) é \textbf{divisor de zero à esquerda} se \(\mathbf{a\cdot b=0}\)
 Um anel comutativo com 1 é \textbf{domínio} se não possui divisores de zero.
 \end{definition}
 
-\begin{definition}[\defname{Unidade}]
-Em anel com 1, \(a\in R\setminus\{0\}\) é \textbf{unidade} se existe (único) \(a^{-1}\in R\setminus\{0\}\) com \(a a^{-1}=1=a^{-1}a\). O conjunto das unidades é \(\mathbf{R^\times}\).
+\begin{definition}[\defname{Unidade $R^\times$}]
+Em anel com 1, \(a\in R\setminus\{0\}\) é \textbf{unidade}
+se existe (único) \(a^{-1}\in R\setminus\{0\}\) 
+com \(a a^{-1}=1=a^{-1}a\). O conjunto das unidades é 
+\(\mathbf{R^\times}\).
 \end{definition}
 
 \begin{definition}[\defname{Corpo}]
@@ -369,7 +372,7 @@ Se \(I_1,\dots,I_n\) são ideais próprios de \(R\) dois a dois coprimos (\(I_i+
 \]
 \end{theorem}
 \end{multicols}
-\section{Corpos de Ideais Principais}
+\section{Domínios de Ideais Principais}
 \begin{multicols}{3}
     
 \begin{definition}[\defname{Domínio Euclidiano}]. 
@@ -402,7 +405,21 @@ Equivalentemente, \(K\) é o menor corpo que contém \(A\).
 \begin{proposition}[\defname{Isomorfismo com Corpo de Fracões}]
     Se $K$ é um corpo, então $Frac(K) \cong K$
 \end{proposition}
-\end{multicols}
 
+\begin{definition}[\defname{Associado}]
+    $a,b$ são \emph{associados} se existe $u \in D^{\times}$, tal que: $a=bu$. 
+    
+\end{definition}
+\begin{definition}[\defname{Irredutível}]
+    $\pi$ é Irredutível se $\pi = ab \implies a$ é \emph{associado} 
+    ou $b$ é \emph{associado} a $\pi$. 
+\end{definition}
+\begin{definition}[\defname{Primo}]
+    $\pi| ab \implies \pi | a $ ou $ \pi | b$
+\begin{lemma}[\defname{Primo implica irredutivel}]
+    Sejam $D$ um domínio e $\pi \in D$. Se $\pi$ é primo então $\pi$ é irredutivel.
+\end{lemma}
+\end{definition}
+\end{multicols}
 
 \end{document}
