@@ -88,8 +88,9 @@ Se $p \in [1, \infty]$, então
 \]
 ou, em outras palavras, $\Vert x + y \Vert_p \le \Vert x \Vert_p + \Vert y \Vert_p$ para todo $x = (x_1, \dots, x_N), y = (y_1, \dots, y_N) \in \mathbb{R}^N$.
 \end{lemma}
-
-Essas desigualdades ajudam a estabelecer as propriedades fundamentais dos espaços normados, o que leva naturalmente ao estudo de sua completude e do comportamento das transformações entre eles.
+\begin{lemma}[Desigualdade de Cauchy-Schwarz]
+    Seja $H$ um espaço com produto interno, então $$|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \| \mathbf{u} \| \| \mathbf{v} \|$$
+\end{lemma}
 \end{multicols}
 
 \section{Completude e Transformações Lineares}
@@ -395,7 +396,7 @@ Seja $H$ um espaço de Hilbert e $M$ um subespaço vetorial fechado de $H$. Ent�
 \end{theorem}
 
 \begin{theorem}[Representação de Riesz]
-Se $f \in H^*$, existe um único $y \in H$ tal que $f(x) = \langle x, y \rangle$ para todo $x \in H$.
+Se $f \in H^*$(\emph{$H$ é Hilbert}), existe um único $y \in H$ tal que $f(x) = \langle x, y \rangle$ para todo $x \in H$.
 \end{theorem}
 
 \begin{theorem}[A Desigualdade de Bessel]
@@ -487,6 +488,7 @@ Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ �
 \end{proposition}
 \end{multicols}
 
+\end{comment}
 
 
 \section{Operadores Compactos}
@@ -520,5 +522,4 @@ Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ 
 \end{theorem}
 \end{multicols}
 
-\end{comment}
 \end{document}
