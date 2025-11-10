@@ -7,6 +7,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{geometry}
+\usepackage{changepage}
+
 \geometry{a4paper, margin=0.5in, landscape}
 \usepackage{multicol}
 \usepackage{enumitem}
@@ -23,11 +25,10 @@
 {\bfseries}% head font
 {}% punctuation after head
 {0.2em}% space after head
-{\colorbox{yellow!30}{\strut #1\ifx#2\empty\else~#2\fi\ifx#3\empty\else~\ (#3)\fi}}% head spec
+{{\strut #1\ifx#2\empty\else~#2\fi\ifx#3\empty\else~\ (#3)\fi}}% head spec
 
 % Ativa o estilo e (re)declara seus ambientes
 \theoremstyle{yellowhead}
-\newtheorem*{theorem}{Teorema}
 \newtheorem*{lemma}{Lema}
 \newtheorem*{proposition}{Prop.}
 \newtheorem*{corollary}{Cor.}
@@ -37,6 +38,7 @@
 {6pt}{6pt}{\normalfont}{}{\bfseries}{.}{0.6em}
 {\colorbox{yellow!30}{\strut #1\ifx#2\empty\else~#2\fi\ifx#3\empty\else~\ (#3)\fi}}
 \theoremstyle{yellowdef}
+\newtheorem*{theorem}{Teorema}
 \newtheorem*{definition}{Def.}
 \newtheorem{exemplo}{Exemplo}
 \newtheorem{observacao}{Observação}
@@ -46,8 +48,10 @@
 \title{Sumário de Teoremas, Proposições e Lemas Fundamentais em Análise Funcional}
 \author{}
 \date{}
-
+\begin{center}
 \section{Desigualdades Fundamentais para Espaços Normados}
+    
+\end{center}
 
 \begin{multicols}{3}
 
@@ -92,8 +96,10 @@ ou, em outras palavras, $\Vert x + y \Vert_p \le \Vert x \Vert_p + \Vert y \Vert
     Seja $H$ um espaço com produto interno, então $$|\langle \mathbf{u}, \mathbf{v} \rangle| \leq \| \mathbf{u} \| \| \mathbf{v} \|$$
 \end{lemma}
 \end{multicols}
-
+\begin{center}
 \section{Completude e Transformações Lineares}
+    
+\end{center}
 \begin{multicols}{3}
 \begin{definition}[Espaço de Banach]
 Um espaço vetorial normado que é **completo** com a métrica induzida pela norma é dito um **espaço de Banach**.
@@ -137,8 +143,10 @@ Se $Y$ é completo, então $L(X, Y)$ é completo.
 \end{proposition}
 O conceito de transformações lineares limitadas entre espaços completos (espaços de Banach) leva diretamente ao estudo mais detalhado de funcionais lineares, que são centrais para os teoremas de Hahn-Banach.
 \end{multicols}
-
+\begin{center}
 \section{Os Teoremas de Hahn-Banach e Suas Consequências}
+    
+\end{center}
 \begin{multicols}{3}
 \begin{definition}[Funcional Linear]
 Seja $X$ um espaço vetorial sobre $K$. Uma função linear $f : X \rightarrow K$ é chamada um **funcional linear**.
@@ -227,8 +235,10 @@ Sejam $X$ um espaço vetorial normado real, e $A$ e $B$ conjuntos convexos, não
 Sejam $X$ um espaço vetorial normado sobre $\mathbb{K}$ e $F \subset X$ um subespaço vetorial próprio de $X$ ($\bar{F} \neq X$). Então, existe $f \in X^*$, $f \neq 0$ tal que $f(x) = 0$, $\forall x \in F$.
 \end{corollary}
 \end{multicols}
-
+\begin{center}
 \section{Consequências do Teorema da Categoria de Baire}
+    
+\end{center}
 \begin{multicols}{3}
     \begin{definition}[Auto-valor e Auto-vetor]
 Considere um espaço vetorial $X$ sobre o corpo $K$ e uma transformação linear $A : X \rightarrow X$. Se a transformação linear $\lambda I - A$ (para cada escalar $\lambda \in K$) não é injetiva, existe $0 \ne x \in X$ tal que $(\lambda I - A)x = 0$. Neste caso, diremos que $\lambda$ é um **auto-valor de $A$** e que $x$ é um **auto-vetor de $A$ associado ao auto-valor $\lambda$**.
@@ -360,7 +370,10 @@ Se $X$ e $Y$ são espaços de Banach e $T: X \to Y$ é fechada, então $T$ é li
 \end{theorem}
 \end{multicols}
 \newpage
+\begin{center}
 \section{Espaços de Hilbert: Projeções, Representação e Bases}
+    
+\end{center}
 \begin{multicols}{3}
 
 \begin{definition}[Espaço com Produto Interno]
@@ -490,9 +503,77 @@ Se $A: D(A) \subset X \to X$ é fechado e densamente definido, então $D(A^*)$ �
 
 \end{comment}
 
-
+\begin{center}
+\newpage
 \section{Operadores Compactos}
+    
+\end{center}
 \begin{multicols}{3}
+\begin{definition}[Operador Dual ($A^*$)]
+Seja $A : D(A) \subset X \to Y$ uma \colorbox{yellow!20}{transformação linear densamente definida}. 
+A \colorbox{yellow!20}{transformação dual} (ou \colorbox{yellow!20}{operador dual}) 
+$A^* : D(A^*) \subset Y^* \to X^*$ de $A$ é definida da seguinte forma:
+\begin{multline*}
+D(A^*) = \{\, y^* \in Y^* $ tal que $\\ 
+y^* \circ A : D(A) \subset X \to \mathbb{K} \text{ é limitado} \,\},
+\end{multline*}
+isto é,
+\begin{multline*}
+D(A^*) = 
+\Big\{\, y^* \in Y^* : 
+\exists\, z^* \in X^* \text{ tal que } 
+\\
+\begin{split}
+&\langle A x , y^* \rangle = \langle x , z^* \rangle, 
+\quad \forall x \in D(A)
+\Big\}.
+\end{split}
+\end{multline*}
+Se $y^* \in D(A^*)$, definimos $A^* y^* := z^*$, 
+onde $z^*$ é o (único) elemento de $X^*$ satisfazendo a igualdade acima. 
+Dessa forma,
+\begin{equation*}
+\langle A x , y^* \rangle = \langle x , A^* y^* \rangle, 
+\quad \forall x \in D(A), \ \forall y^* \in D(A^*).
+\end{equation*}
+\end{definition}
+\begin{definition}[Operador Linear Fechado]
+Sejam $X$ e $Y$ espaços normados, e seja 
+$A : D(A) \subset X \to Y$ uma \colorbox{yellow!20}{transformação linear densamente definida}. 
+
+Definimos o \colorbox{yellow!20}{gráfico} de $A$ por
+\[
+G(A) = \{\, (x, A x) \in X \times Y : x \in D(A) \,\}.
+\]
+
+Dizemos que $A$ é um \colorbox{yellow!20}{operador linear fechado} se o seu gráfico $G(A)$ é \textbf{fechado} em $X \times Y$, isto é,
+\[
+(x_n, A x_n) \to (x, y) \text{ em } X \times Y
+\quad \Longrightarrow \]
+\[ \quad 
+x \in D(A) \text{ e } A x = y.
+\]
+\end{definition}
+
+\begin{definition}[Anuladores]
+Seja $X$ um espaço vetorial normado sobre $\mathbb{K}$, 
+$M \subset X$ e $N^* \subset X^*$. Definimos
+\[
+M^{\perp} = \{\, m^{\perp} \in X^* : 
+\langle m, m^{\perp} \rangle = 0, \ \forall m \in M \,\}
+\]
+\[
+(N^*)^{\perp} = \{\, x \in X : 
+\langle x, n^* \rangle = 0, \ \forall n^* \in N^* \,\}.
+\]
+Diremos que $M^{\perp}$ (respectivamente $(N^*)^{\perp}$) 
+é o \colorbox{yellow!20}{anulador de $M$ (respectivamente de $N^*$)}.
+
+Observe que $M^{\perp}$ (e $(N^*)^{\perp}$) 
+é um \colorbox{yellow!20}{subespaço vetorial fechado} de $X^*$ (respectivamente de $X$).
+\end{definition}
+
+
 \begin{definition}[Operador Compacto]
 Sejam $X ,Y$ espaços de Banach sobre $K$. Diremos que um operador linear $K : X \rightarrow Y$ é **compacto** se $K (B_X^1(0))$ é um subconjunto relativamente compacto de $Y$.
 \end{definition}
@@ -520,6 +601,18 @@ Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ 
     \item Se $A \in K(X, Y)$ e $R(A)$ é um subespaço fechado de $Y$, então $R(A)$ tem dimensão finita.
 \end{enumerate}
 \end{theorem}
+\end{multicols}
+\begin{center}
+    \section{Funcionais Lineares Contínuos e Topologia}
+\end{center}
+\begin{multicols}{3}
+    \begin{theorem}[Tychonoff]
+        $X_{\alpha}$, $\alpha \in A$ são espaços topológicos compactos,
+         se e somente se, 
+        $$(X, \mathcal{T}) := \left( \prod_{\alpha \in A} 
+        X_{\alpha}, \prod_{\alpha \in A} \mathcal{T}_{\alpha} \right) \text{ é compacto.}$$
+    \end{theorem}
+    
 \end{multicols}
 
 \end{document}
