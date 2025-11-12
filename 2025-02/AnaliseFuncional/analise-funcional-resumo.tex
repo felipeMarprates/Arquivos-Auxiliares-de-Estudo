@@ -327,6 +327,13 @@ Seja $X$ um espaço de Banach e $Y$ um espaço vetorial normado. Se $T \in L(X, 
     \item $Y$ será de segunda categoria.
 \end{enumerate}
 \end{theorem}
+\begin{theorem}[Aplicação Aberta 2 versão]
+Sejam $X$ e $Y$ espaços de Banach. Para todo $T \in \mathcal{B}(X,Y)$, vale:
+\[
+T \text{ é sobrejetora } \Longleftrightarrow T \text{ é uma aplicação aberta.}
+\]
+\end{theorem}
+
 
 \begin{lemma}[Equivalência de Mapeamento Aberto]
 Sejam $X, Y$ espaços vetoriais normados e $T: X \to Y$ uma transformação linear. As seguintes afirmações são equivalentes:
@@ -612,7 +619,26 @@ Sejam $X, Y, Z$ espaços de Banach sobre um corpo $\mathbb{K}$, $A \in L(X, Y)$ 
         $$(X, \mathcal{T}) := \left( \prod_{\alpha \in A} 
         X_{\alpha}, \prod_{\alpha \in A} \mathcal{T}_{\alpha} \right) \text{ é compacto.}$$
     \end{theorem}
-    
+\begin{definition}[Convergência forte]
+Seja $(X, \|\cdot\|)$ um espaço normado. 
+Dizemos que uma sequência $(x_n)_{n\in\mathbb{N}} \subset X$ 
+\textbf{converge fortemente} para $x \in X$ se
+\[
+\|x_n - x\| \longrightarrow 0 \quad \text{quando } n \to \infty.
+\]
+Neste caso, escreve-se $x_n \to x$ ou $x_n \xrightarrow{\|\cdot\|} x$.
+\end{definition}
+
+\begin{definition}[Convergência fraca]
+Seja $(X, \|\cdot\|)$ um espaço normado e $X^*$ seu espaço dual. 
+Dizemos que uma sequência $(x_n)_{n\in\mathbb{N}} \subset X$ 
+\textbf{converge fracamente} para $x \in X$ se
+\[
+f(x_n) \longrightarrow f(x) \quad \text{para todo } f \in X^*.
+\]
+Neste caso, escreve-se $x_n \rightharpoonup x$.
+\end{definition}
+
 \end{multicols}
 
 \end{document}
